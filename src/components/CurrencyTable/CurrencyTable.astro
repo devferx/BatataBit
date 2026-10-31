@@ -79,12 +79,12 @@ const trendLabel = { up: "Al alza", down: "A la baja" } as const;
     max-width: 500px;
     height: auto;
     margin: 0 auto;
-    margin-bottom: 30px;
+    margin-bottom: var(--space-32);
     font-family: var(--font-data);
   }
 
   .currency-table__title {
-    margin-bottom: 15px;
+    margin-bottom: var(--space-16);
     font-size: var(--text-title-md-size);
     font-weight: var(--text-title-md-weight);
     line-height: var(--text-title-md-line);
@@ -102,7 +102,7 @@ const trendLabel = { up: "Al alza", down: "A la baja" } as const;
   .currency-table__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2px;
+    gap: var(--border-divider);
     width: 90%;
     min-width: 230px;
     max-width: 300px;
@@ -122,7 +122,7 @@ const trendLabel = { up: "Al alza", down: "A la baja" } as const;
     display: flex;
     align-items: center;
     width: auto;
-    padding: var(--space-12) 10px;
+    padding: var(--space-12);
     font-size: var(--text-data-size);
     font-weight: var(--text-data-weight);
     line-height: var(--text-data-line);
@@ -169,7 +169,7 @@ const trendLabel = { up: "Al alza", down: "A la baja" } as const;
     display: inline-block;
     width: 15px;
     height: 15px;
-    margin-left: 10px;
+    margin-left: var(--space-8);
   }
 
   .currency-table__updated {

@@ -56,8 +56,8 @@ const { title, price, note, badge, ctaLabel } = Astro.props;
     min-width: 190px;
     max-width: 300px;
     height: 250px;
-    margin: 50px 5px 0px;
-    padding: 0 15px;
+    margin: var(--space-48) var(--space-4) 0;
+    padding: 0 var(--space-16);
     background-color: var(--color-surface-card);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-on-light);
@@ -65,7 +65,7 @@ const { title, price, note, badge, ctaLabel } = Astro.props;
 
   .plan-card__badge {
     position: absolute;
-    top: -15px;
+    top: calc(var(--space-16) * -1);
     left: 0;
     right: 0;
     display: flex;
@@ -73,7 +73,7 @@ const { title, price, note, badge, ctaLabel } = Astro.props;
   }
 
   .plan-card__title {
-    padding-top: 30px;
+    padding-top: var(--space-32);
     font-size: var(--text-body-sm-size);
     font-weight: var(--text-body-sm-weight);
     line-height: var(--text-body-sm-line);
@@ -81,7 +81,7 @@ const { title, price, note, badge, ctaLabel } = Astro.props;
   }
 
   .plan-card__price {
-    padding: 5px 0;
+    padding: var(--space-4) 0;
     font-size: var(--text-price-size);
     font-weight: var(--text-price-weight);
     line-height: var(--text-price-line);
