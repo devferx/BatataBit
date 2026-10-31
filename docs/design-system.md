@@ -84,6 +84,7 @@ Every focusable element (links, buttons, anything with `tabindex`) gets the same
 
 - `npm run tokens:build` regenerates the CSS tokens.
 - `npm run docs:check` verifies that every component guide matches its code and that every token named in the docs exists.
+- `npm run ds:validate` runs the design-system validator over the site: raw values outside tokens, raw HTML where a component exists, unknown or primitive tokens, undocumented components. The `batatabit-ds` MCP server exposes the same checks (`validate_file`) to AI agents, along with `list_components`, `get_component`, `get_tokens` and `resolve_value`; see `AGENTS.md`.
 - `npx astro check` type-checks the project.
 - `node scripts/contrast/focus-ring.mjs <url>` tabs through every focusable element and measures its ring against the surroundings.
 - `node scripts/contrast/audit-page.mjs <url>` audits text and UI contrast on the rendered page; `node scripts/contrast/hero-contrast.mjs <url> --live` measures the hero over the real gradient.

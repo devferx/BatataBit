@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "batatabit-ds": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["mcp/src/index.ts"],
+      "env": {}
+    }
+  }
+}
