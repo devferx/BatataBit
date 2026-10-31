@@ -1,0 +1,57 @@
+---
+import Icon, { type Props as IconProps } from "../Icon/Icon.astro";
+
+export interface Props {
+  /** Glyph shown above the title. One of the Icon names that represent a feature. */
+  icon: Extract<IconProps["name"], "clock" | "eye" | "dollar-sign" | "check-circle">;
+  /** Card title, rendered as an `<h3>` (place the card under an `<h2>` section title). */
+  title: string;
+  /** Supporting sentence(s) under the title. */
+  body: string;
+}
+
+const { icon, title, body } = Astro.props;
+---
+
+<article class="feature-card">
+  <span class="feature-card__icon"><Icon name={icon} /></span>
+  <h3 class="feature-card__title">{title}</h3>
+  <p class="feature-card__body">{body}</p>
+</article>
+
+<style>
+  .feature-card {
+    width: 90%;
+    min-width: 288px;
+    max-width: 400px;
+    min-height: 150px;
+    margin: 15px auto;
+    padding: 15px;
+    background-color: var(--color-surface-dark-raised);
+    border-radius: var(--radius-card-compact);
+    box-shadow: var(--shadow-on-dark);
+  }
+
+  .feature-card__icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 10px;
+    color: var(--color-primary);
+  }
+
+  .feature-card__title {
+    margin-bottom: 15px;
+    font-size: var(--text-title-sm-size);
+    font-weight: var(--text-title-sm-weight);
+    line-height: var(--text-title-sm-line);
+    color: var(--color-text-on-dark);
+  }
+
+  .feature-card__body {
+    font-size: var(--text-body-sm-size);
+    font-weight: var(--text-body-sm-weight);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-muted-on-dark);
+  }
+</style>

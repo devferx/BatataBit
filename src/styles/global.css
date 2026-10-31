@@ -211,41 +211,6 @@ main {
   text-align: center;
 }
 
-.product-detail--card {
-  width: 90%;
-  min-width: 288px;
-  max-width: 400px;
-  min-height: 150px;
-  margin: 15px auto;
-  padding: 15px;
-  background-color: var(--color-surface-dark-raised);
-  border-radius: var(--radius-card-compact);
-  box-shadow: var(--shadow-on-dark);
-}
-
-.product-detail--card .icon-card {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-bottom: 10px;
-  color: var(--color-primary);
-}
-
-.product--card-title {
-  margin-bottom: 15px;
-  font-size: var(--text-title-sm-size);
-  font-weight: var(--text-title-sm-weight);
-  line-height: var(--text-title-sm-line);
-  color: var(--color-text-on-dark);
-}
-
-.product--card-body {
-  font-size: var(--text-body-sm-size);
-  font-weight: var(--text-body-sm-weight);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-text-muted-on-dark);
-}
-
 .bitcoin-img-container {
   width: 100%;
   min-width: 320px;
