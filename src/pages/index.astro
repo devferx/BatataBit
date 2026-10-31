@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon/Icon.astro";
+import Button from "../components/Button/Button.astro";
 import Badge from "../components/Badge/Badge.astro";
 ---
 
@@ -12,8 +13,9 @@ import Badge from "../components/Badge/Badge.astro";
         <p>
           Batabit te ayuda a navegar entre los diferentes precios y tendencias.
         </p>
-        <a class="header--button" href="#plans"
-          >Conoce Nuestros Planes <span><Icon name="arrow-down" /></span></a>
+        <div class="hero-cta">
+          <Button variant="light" as="a" href="#plans" icon="arrow-down">Conoce Nuestros Planes</Button>
+        </div>
       </div>
     </header>
     <main>
@@ -131,7 +133,7 @@ import Badge from "../components/Badge/Badge.astro";
               <h3 class="plan-card--title">Pago Mensual</h3>
               <p class="plan-card--price"><span>$</span> 19</p>
               <p class="plan-card--saving">*Acceso a servicios Pro</p>
-              <button class="plan-card--ca">Escoger este <span><Icon name="arrow-right" /></span></button>
+              <div class="plan-card--action"><Button variant="outline" icon="arrow-right" ariaLabel="Escoger este plan: Pago Mensual">Escoger este</Button></div>
             </div>
           </article>
           <article class="plans-container--card">
@@ -142,7 +144,7 @@ import Badge from "../components/Badge/Badge.astro";
               <p class="plan-card--saving">
                 *Ahorras $129 comparado al plan mensual.
               </p>
-              <button class="plan-card--ca">Escoger este <span><Icon name="arrow-right" /></span></button>
+              <div class="plan-card--action"><Button variant="outline" icon="arrow-right" ariaLabel="Escoger este plan: Pago Anual">Escoger este</Button></div>
             </div>
           </article>
           <article class="plans-container--card">
@@ -152,7 +154,7 @@ import Badge from "../components/Badge/Badge.astro";
               <p class="plan-card--saving">
                 *Acceso a servicios Pro durante un dia
               </p>
-              <button class="plan-card--ca">Escoger este <span><Icon name="arrow-right" /></span></button>
+              <div class="plan-card--action"><Button variant="outline" icon="arrow-right" ariaLabel="Escoger este plan: Pago Diario">Escoger este</Button></div>
             </div>
           </article>
         </section>

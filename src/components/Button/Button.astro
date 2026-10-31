@@ -1,0 +1,115 @@
+---
+import Icon from "../Icon/Icon.astro";
+
+interface BaseProps {
+  /**
+   * Visual style. `light` = filled off-white button with shadow (hero call to action, 229px wide);
+   * `outline` = orange-outlined button for secondary actions (plan cards, 150px wide).
+   */
+  variant: "light" | "outline";
+  /** Optional trailing icon. Decorative; the label must carry the meaning. */
+  icon?: "arrow-down" | "arrow-right";
+  /**
+   * Accessible name override. Use it when the visible label is ambiguous out of context
+   * (e.g. several "Escoger este" buttons); keep the visible label inside it (WCAG 2.5.3).
+   * @default undefined (the visible label is the name)
+   */
+  ariaLabel?: string;
+}
+
+export interface LinkProps extends BaseProps {
+  /** Render an `<a>` (navigation). Requires `href`. */
+  as: "a";
+  /** Link target (e.g. `#plans`). Required when `as="a"`. */
+  href: string;
+}
+
+export interface ActionProps extends BaseProps {
+  /**
+   * Render a `<button type="button">` (in-page action).
+   * @default "button"
+   */
+  as?: "button";
+  href?: never;
+}
+
+export type Props = LinkProps | ActionProps;
+
+const props = Astro.props;
+const { variant, icon, ariaLabel } = props;
+const classes = ["button", `button--${variant}`];
+---
+
+{
+  props.as === "a" ? (
+    <a class:list={classes} href={props.href} aria-label={ariaLabel}>
+      <slot />
+      {icon && (
+        <>
+          {" "}
+          <span class="button__icon">
+            <Icon name={icon} />
+          </span>
+        </>
+      )}
+    </a>
+  ) : (
+    <button class:list={classes} type="button" aria-label={ariaLabel}>
+      <slot />
+      {icon && (
+        <>
+          {" "}
+          <span class="button__icon">
+            <Icon name={icon} />
+          </span>
+        </>
+      )}
+    </button>
+  )
+}
+
+<style>
+  .button {
+    height: 48px;
+    background-color: var(--color-surface-page);
+    color: var(--color-text-strong);
+    font-size: var(--text-button-size);
+    font-weight: var(--text-button-weight);
+  }
+
+  .button--light {
+    display: block;
+    width: 229px;
+    padding: 15px;
+    box-shadow: var(--shadow-on-light);
+    border-radius: var(--radius-button);
+    text-decoration: none;
+  }
+
+  .button--outline {
+    width: 150px;
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-button-outline);
+    cursor: pointer;
+    font-family: var(--font-body);
+    line-height: var(--text-button-line);
+  }
+
+  .button__icon {
+    display: inline-block;
+  }
+
+  .button--light .button__icon {
+    width: 13px;
+    height: 8px;
+    margin-left: 10px;
+    color: var(--color-surface-dark);
+  }
+
+  .button--outline .button__icon {
+    width: 20px;
+    height: 20px;
+    color: var(--color-primary);
+    vertical-align: text-bottom;
+  }
+</style>

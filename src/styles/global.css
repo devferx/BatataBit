@@ -69,31 +69,11 @@ header img {
   color: var(--color-primary-soft);
 }
 
-.header--title-container .header--button {
+.hero-cta {
   position: absolute;
   left: calc(50% - 118px);
   top: 270px;
-  display: block;
   margin-top: 35px;
-  padding: 15px;
-  width: 229px;
-  height: 48px;
-  background-color: var(--color-surface-page);
-  /* Sombra */
-  box-shadow: var(--shadow-on-light);
-  border-radius: var(--radius-button);
-  font-size: var(--text-button-size);
-  font-weight: var(--text-button-weight);
-  text-decoration: none;
-  color: var(--color-text-strong);
-}
-
-.header--button span {
-  display: inline-block;
-  width: 13px;
-  height: 8px;
-  margin-left: 10px;
-  color: var(--color-surface-dark);
 }
 
 main {
@@ -421,27 +401,8 @@ main {
   color: var(--color-text-muted);
 }
 
-.plan-card--ca {
-  width: 150px;
-  height: 48px;
+.plan-card--action {
   margin-top: var(--space-20);
-  background-color: var(--color-surface-page);
-  border: 2px solid var(--color-primary);
-  border-radius: var(--radius-button-outline);
-  cursor: pointer;
-  font-size: var(--text-button-size);
-  font-weight: var(--text-button-weight);
-  font-family: var(--font-body);
-  line-height: var(--text-button-line);
-  color: var(--color-text-strong);
-}
-
-.plan-card--ca span {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  color: var(--color-primary);
-  vertical-align: text-bottom;
 }
 
 footer {
