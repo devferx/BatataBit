@@ -1,13 +1,14 @@
 ---
 export interface Props {
   /**
-   * Colour scheme. `primary` / `secondary` are solid fills with light text (promotional badges);
+   * Colour scheme. `primary` / `secondary` are solid fills with dark text (promotional badges);
    * `primary-soft` / `secondary-soft` are tinted fills with dark text (informational chips).
    */
   tone: "primary" | "secondary" | "primary-soft" | "secondary-soft";
   /**
-   * `sm` = 120×31 badge that labels a card ("Recomendado"); `md` = 190×30 chip with
-   * light 12/15 text (the "Actualizado" date chip).
+   * Typography. `sm` = bold label (text.badge) for badges that label a card ("Recomendado");
+   * `md` = regular text (text.caption) for chips such as the "Actualizado" date chip; a
+   * `<strong>` inside it takes the bold badge style.
    * @default "md"
    */
   size?: "sm" | "md";
@@ -16,29 +17,35 @@ export interface Props {
 const { tone, size = "md" } = Astro.props;
 ---
 
-<p class:list={["badge", `badge--${size}`, `badge--${tone}`]}><slot /></p>
+<span class:list={["badge", `badge--${size}`, `badge--${tone}`]}><slot /></span>
 
 <style>
   .badge {
-    text-align: center;
+    display: block;
+    width: fit-content;
+    padding: var(--space-8);
     border-radius: var(--radius-chip);
+    text-align: center;
   }
 
   .badge--sm {
-    width: 120px;
-    height: 31px;
-    padding: var(--space-8);
-    font-size: var(--text-caption-size);
+    font-family: var(--text-badge-family);
+    font-size: var(--text-badge-size);
+    font-weight: var(--text-badge-weight);
+    line-height: var(--text-badge-line);
   }
 
   .badge--md {
     margin-inline: auto;
-    width: 190px;
-    height: 30px;
-    padding: var(--space-8);
+    font-family: var(--text-caption-family);
     font-size: var(--text-caption-size);
     font-weight: var(--text-caption-weight);
     line-height: var(--text-caption-line);
+  }
+
+  .badge :global(strong) {
+    font-family: var(--text-badge-family);
+    font-weight: var(--text-badge-weight);
   }
 
   .badge--primary {
@@ -48,7 +55,7 @@ const { tone, size = "md" } = Astro.props;
 
   .badge--secondary {
     background-color: var(--color-secondary);
-    color: var(--color-on-primary);
+    color: var(--color-on-secondary);
   }
 
   .badge--primary-soft {

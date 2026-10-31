@@ -3,20 +3,29 @@
     "title": "Pago Mensual",
     "price": 19,
     "note": "*Acceso a servicios Pro",
-    "badge": { "label": "Más vendido", "tone": "secondary" },
-    "ctaLabel": "Escoger este"
+    "badge": {
+      "label": "Más vendido",
+      "tone": "secondary"
+    },
+    "ctaLabel": "Escoger este",
+    "ctaAriaLabel": "Escoger el plan Pago Mensual"
   },
   {
     "title": "Pago Anual",
     "price": 99,
     "note": "*Ahorras $129 comparado al plan mensual.",
-    "badge": { "label": "Recomendado", "tone": "primary" },
-    "ctaLabel": "Escoger este"
+    "badge": {
+      "label": "Recomendado",
+      "tone": "primary"
+    },
+    "ctaLabel": "Escoger este",
+    "ctaAriaLabel": "Escoger el plan Pago Anual"
   },
   {
     "title": "Pago Diario",
     "price": 17,
     "note": "*Acceso a servicios Pro durante un dia",
-    "ctaLabel": "Escoger este"
+    "ctaLabel": "Escoger este",
+    "ctaAriaLabel": "Escoger el plan Pago Diario"
   }
 ]

@@ -3,8 +3,8 @@ import Icon from "../Icon/Icon.astro";
 
 interface BaseProps {
   /**
-   * Visual style. `light` = filled off-white button with shadow (hero call to action, 229px wide);
-   * `outline` = orange-outlined button for secondary actions (plan cards, 150px wide).
+   * Visual style. `light` = filled button with shadow (hero call to action, 229px wide);
+   * `outline` = button with an accent border for secondary actions (plan cards, 150px wide).
    */
   variant: "light" | "outline";
   /** Optional trailing icon. Decorative; the label must carry the meaning. */
@@ -45,24 +45,18 @@ const classes = ["button", `button--${variant}`];
     <a class:list={classes} href={props.href} aria-label={ariaLabel}>
       <slot />
       {icon && (
-        <>
-          {" "}
-          <span class="button__icon">
-            <Icon name={icon} />
-          </span>
-        </>
+        <span class="button__icon">
+          <Icon name={icon} />
+        </span>
       )}
     </a>
   ) : (
     <button class:list={classes} type="button" aria-label={ariaLabel}>
       <slot />
       {icon && (
-        <>
-          {" "}
-          <span class="button__icon">
-            <Icon name={icon} />
-          </span>
-        </>
+        <span class="button__icon">
+          <Icon name={icon} />
+        </span>
       )}
     </button>
   )
@@ -70,29 +64,32 @@ const classes = ["button", `button--${variant}`];
 
 <style>
   .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-8);
     height: 48px;
-    background-color: var(--color-surface-page);
-    color: var(--color-text-strong);
+    padding: 0 var(--space-16);
+    background-color: var(--color-surface-button);
+    border-radius: var(--radius-button);
+    color: var(--color-on-button);
+    font-family: var(--text-button-family);
     font-size: var(--text-button-size);
     font-weight: var(--text-button-weight);
+    line-height: var(--text-button-line);
   }
 
   .button--light {
-    display: block;
     width: 229px;
-    padding: var(--space-16);
     box-shadow: var(--shadow-on-light);
-    border-radius: var(--radius-button);
     text-decoration: none;
   }
 
   .button--outline {
+    display: inline-flex;
     width: 150px;
-    border: 2px solid var(--color-primary);
-    border-radius: var(--radius-button-outline);
+    border: var(--border-button) solid var(--color-border-accent);
     cursor: pointer;
-    font-family: var(--font-body);
-    line-height: var(--text-button-line);
   }
 
   .button__icon {
@@ -102,14 +99,12 @@ const classes = ["button", `button--${variant}`];
   .button--light .button__icon {
     width: 13px;
     height: 8px;
-    margin-left: var(--space-8);
-    color: var(--color-surface-dark);
+    color: var(--color-on-button);
   }
 
   .button--outline .button__icon {
     width: 20px;
     height: 20px;
     color: var(--color-primary);
-    vertical-align: text-bottom;
   }
 </style>

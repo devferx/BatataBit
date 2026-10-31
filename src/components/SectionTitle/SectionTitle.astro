@@ -18,29 +18,17 @@ export interface Props {
    * `on-gradient` (white heading, soft-orange lead; the hero).
    */
   tone: "on-light" | "on-dark" | "on-gradient";
-  /**
-   * Space between heading and lead: `sm` = 20px, `md` = 25px, `lg` = 30px.
-   * Legacy parity prop: the original sections used three different gaps; Phase 5 should unify them.
-   * @default "lg"
-   */
-  gap?: "sm" | "md" | "lg";
-  /**
-   * Use the legacy tight 14/16 lead (text.lead-tight) instead of the standard 14/18.
-   * Legacy parity prop for the exchange section; Phase 5 should remove it.
-   * @default false
-   */
-  tightLead?: boolean;
 }
 
-const { title, lead, level, tone, gap = "lg", tightLead = false } = Astro.props;
+const { title, lead, level, tone } = Astro.props;
 const Heading = level === 1 ? "h1" : "h2";
 ---
 
-<div class:list={["section-title", `section-title--${tone}`, `section-title--gap-${gap}`]}>
+<div class:list={["section-title", `section-title--${tone}`]}>
   <Heading class="section-title__heading">{title}</Heading>
   {
     lead && (
-      <p class:list={["section-title__lead", { "section-title__lead--tight": tightLead }]}>
+      <p class="section-title__lead">
         {lead}
       </p>
     )
@@ -66,22 +54,8 @@ const Heading = level === 1 ? "h1" : "h2";
     line-height: var(--text-lead-line);
   }
 
-  .section-title__lead--tight {
-    font-size: var(--text-lead-tight-size);
-    font-weight: var(--text-lead-tight-weight);
-    line-height: var(--text-lead-tight-line);
-  }
-
-  .section-title--gap-sm .section-title__lead {
-    margin-top: var(--space-20);
-  }
-
-  .section-title--gap-md .section-title__lead {
+  .section-title__lead {
     margin-top: var(--space-24);
-  }
-
-  .section-title--gap-lg .section-title__lead {
-    margin-top: var(--space-32);
   }
 
   .section-title--on-light .section-title__heading {

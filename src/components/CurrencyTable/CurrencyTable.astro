@@ -8,8 +8,8 @@ export interface Row {
   /** Second-column text, already formatted (e.g. "$ 1.96"). */
   value: string;
   /**
-   * Direction of the latest change, shown as an icon after the value with a text alternative
-   * ("Al alza" / "A la baja").
+   * Direction of the latest change, shown as an icon after the value with the text
+   * alternative given by `trendLabels`.
    * @default undefined (no icon)
    */
   trend?: "up" | "down";
@@ -24,13 +24,16 @@ export interface Props {
   columns: { label: string; value: string };
   /** Table rows; the first column is the row header, the second the data cell. */
   rows: Row[];
-  /** Last-update text shown in the chip after "Actualizado:" (e.g. "19 Julio 23:45"). */
+  /** Text alternatives of the trend icons, e.g. `{ up: "Al alza", down: "A la baja" }`. */
+  trendLabels: { up: string; down: string };
+  /** Bold word that starts the update chip, e.g. "Actualizado". */
+  updatedLabel: string;
+  /** Last-update text shown in the chip after the label (e.g. "19 Julio 23:45"). */
   updatedAt: string;
 }
 
-const { title, tone, columns, rows, updatedAt } = Astro.props;
+const { title, tone, columns, rows, trendLabels, updatedLabel, updatedAt } = Astro.props;
 const titleId = `currency-table-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
-const trendLabel = { up: "Al alza", down: "A la baja" } as const;
 ---
 
 <div class="currency-table">
@@ -56,7 +59,7 @@ const trendLabel = { up: "Al alza", down: "A la baja" } as const;
               {row.value}
               {row.trend && (
                 <span class="currency-table__trend">
-                  <Icon name={`trending-${row.trend}`} size="sm" label={trendLabel[row.trend]} />
+                  <Icon name={`trending-${row.trend}`} size="sm" label={trendLabels[row.trend]} />
                 </span>
               )}
             </td>
@@ -67,7 +70,7 @@ const trendLabel = { up: "Al alza", down: "A la baja" } as const;
   </table>
   <div class="currency-table__updated">
     <Badge tone={tone === "primary" ? "primary-soft" : "secondary-soft"}>
-      <strong>Actualizado</strong>: {updatedAt}
+      <strong>{updatedLabel}</strong>: {updatedAt}
     </Badge>
   </div>
 </div>
@@ -80,22 +83,32 @@ const trendLabel = { up: "Al alza", down: "A la baja" } as const;
     height: auto;
     margin: 0 auto;
     margin-bottom: var(--space-32);
-    font-family: var(--font-data);
   }
 
   .currency-table__title {
-    margin-bottom: var(--space-16);
+    margin-bottom: var(--space-4);
+    font-family: var(--text-title-md-family);
     font-size: var(--text-title-md-size);
     font-weight: var(--text-title-md-weight);
     line-height: var(--text-title-md-line);
+    color: var(--color-text-strong);
   }
 
-  .currency-table__title--primary {
-    color: var(--color-primary);
+  /* Barra de acento en el color de la tabla; el texto del título es siempre oscuro (contraste). */
+  .currency-table__title::after {
+    content: "";
+    display: block;
+    width: var(--space-32);
+    height: var(--space-4);
+    margin-top: var(--space-4);
   }
 
-  .currency-table__title--secondary {
-    color: var(--color-secondary);
+  .currency-table__title--primary::after {
+    background-color: var(--color-primary);
+  }
+
+  .currency-table__title--secondary::after {
+    background-color: var(--color-secondary);
   }
 
   /* A table laid out as a 2-column grid; rows dissolve so cells are the grid items. */
@@ -123,20 +136,27 @@ const trendLabel = { up: "Al alza", down: "A la baja" } as const;
     align-items: center;
     width: auto;
     padding: var(--space-12);
-    font-size: var(--text-data-size);
-    font-weight: var(--text-data-weight);
-    line-height: var(--text-data-line);
     background-color: var(--color-surface-card);
   }
 
   .currency-table__grid th {
     text-align: start;
-    color: var(--color-text-subtle);
+    font-family: var(--text-data-label-family);
+    font-size: var(--text-data-label-size);
+    font-weight: var(--text-data-label-weight);
+    line-height: var(--text-data-label-line);
+    letter-spacing: var(--text-data-label-letter-spacing);
+    color: var(--color-text-muted);
   }
 
   .currency-table__grid td {
     justify-content: center;
-    color: var(--color-text-muted);
+    font-family: var(--text-data-value-family);
+    font-size: var(--text-data-value-size);
+    font-weight: var(--text-data-value-weight);
+    line-height: var(--text-data-value-line);
+    letter-spacing: var(--text-data-value-letter-spacing);
+    color: var(--color-text-strong);
   }
 
   .currency-table__grid tbody tr:first-child th {

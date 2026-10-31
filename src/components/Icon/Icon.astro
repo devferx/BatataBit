@@ -102,7 +102,9 @@ const glyphs: Record<IconName, Glyph> = {
 const glyph = glyphs[name];
 const px = size === "sm" ? 15 : 20;
 const [width, height] = name === "arrow-down" ? [13, 8] : [px, px];
-const a11y = label ? { role: "img", "aria-label": label } : { "aria-hidden": "true" };
+const a11y = label
+  ? { role: "img" as const, "aria-label": label }
+  : { "aria-hidden": "true" as const };
 ---
 
 <svg
