@@ -1,0 +1,8 @@
+A T1 · worst run a-t1-1 · 3 validator issue(s)
+
+src/components/Faq/Faq.astro:1:1  [missing-docs]  Component Faq has no guide.  found: Faq.astro
+    fix: Create src/components/Faq/Faq.md with the nine sections (Purpose, When to use, When NOT to use, Props, Variants, Tokens used, Accessibility, Examples,
+src/components/Faq/Faq.astro:1:1  [missing-docs]  Faq is not listed in docs/components.md.  found: Faq
+    fix: Add a one-line entry (name, purpose, path to the guide) to docs/components.md.
+src/components/Faq/Faq.astro:73:12  [raw-spacing]  Raw spacing value in "gap".  found: 58px
+    fix: Not on the 4px scale. Nearest: var(--space-64) (space.64, 6px away). Report the value if the design needs it exactly.

@@ -1,26 +1,23 @@
 {
-  "tag": "v7-ai-layer",
   "benchDir": "../BatataBit-bench",
   "model": "claude-sonnet-5-5",
   "maxBudgetUsd": 8,
   "timeoutMinutes": 40,
-  "runsPerRound": 3,
+  "runsPerCell": 3,
+  "figmaFiles": {
+    "current": { "key": "LjxBqsWv8fhgPgFNWP5nJP", "name": "BataBit", "frameNode": "359-319", "faqNode": "524-139" },
+    "backup": { "key": "Y9ZdKpbQNi6T6KJAQdGqxe", "name": "BataBit-backup", "frameNode": "359-319", "faqNode": "488-139" }
+  },
   "rounds": {
-    "a": "Figma MCP only. No AGENTS.md, no docs, no component guides, no design-system MCP, no skill.",
-    "b": "AGENTS.md, CLAUDE.md, docs and component guides. No design-system MCP, no skill.",
-    "c": "Everything: AGENTS.md, docs, component guides, the batatabit-ds MCP server and the build-section-from-figma skill."
+    "r0": { "tag": "v1-astro-parity", "figma": "backup", "description": "No design system: the original Astro port (global CSS, no tokens, no components, no docs), with the original Figma file." },
+    "a": { "tag": "v7-ai-layer", "figma": "current", "description": "Tokens and components in code and variables in Figma, but no AGENTS.md, no docs, no component guides, no design-system MCP, no skill." },
+    "b": { "tag": "v7-ai-layer", "figma": "current", "description": "A plus AGENTS.md, CLAUDE.md, docs and component guides. No design-system MCP, no skill." },
+    "c": { "tag": "v7-ai-layer", "figma": "current", "description": "Everything: B plus the batatabit-ds MCP server and the build-section-from-figma skill." }
+  },
+  "tasks": {
+    "t1": { "title": "FAQ from Figma", "prompt": "bench/tasks/t1-faq.md", "figma": true },
+    "t2": { "title": "Testimonials without a design", "prompt": "bench/tasks/t2-testimonials.md", "figma": false }
   },
   "removeEverywhere": ["AUDIT.md", "PHASE5-PROPOSAL.md"],
-  "allowedTools": [
-    "Bash(npm run *)",
-    "Bash(npx *)",
-    "Bash(node *)",
-    "Bash(curl *)",
-    "Bash(git status*)",
-    "Bash(git diff*)",
-    "Bash(git log*)",
-    "Bash(git add *)",
-    "mcp__plugin_figma_figma",
-    "mcp__batatabit-ds"
-  ]
+  "settingsTemplate": "bench/assets/claude-settings.json"
 }

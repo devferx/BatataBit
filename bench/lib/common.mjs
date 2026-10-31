@@ -10,6 +10,8 @@ export const benchDir = resolve(repoRoot, process.env.BENCH_DIR ?? config.benchD
 export const manifestPath = join(benchDir, "manifest.json");
 export const resultsDir = join(repoRoot, "bench/results");
 
+export const cellId = (round, task, run) => `${round}-${task}-${run}`;
+
 export const git = (cwd, ...args) => execFileSync("git", args, { cwd, encoding: "utf8" }).trim();
 
 export const readManifest = () => {
@@ -36,4 +38,11 @@ export const median = (values) => {
   if (!v.length) return null;
   const m = Math.floor(v.length / 2);
   return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2;
+};
+
+/** Prompt of a task for a round: the same text, with the links of the Figma file that round uses. */
+export const renderPrompt = (round, task) => {
+  const text = readFileSync(join(repoRoot, config.tasks[task].prompt), "utf8").trim();
+  const f = config.figmaFiles[config.rounds[round].figma];
+  return text.replaceAll("{{FILE_KEY}}", f.key).replaceAll("{{FILE_NAME}}", f.name).replaceAll("{{FRAME_NODE}}", f.frameNode).replaceAll("{{FAQ_NODE}}", f.faqNode);
 };

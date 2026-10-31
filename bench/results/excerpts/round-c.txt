@@ -1,1 +1,0 @@
-Round C: no validator issues in any run.
