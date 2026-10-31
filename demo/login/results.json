@@ -1,0 +1,1159 @@
+{
+  "generatedAt": "2026-10-31T19:11:39.676Z",
+  "model": "claude-sonnet-5-5",
+  "rounds": {
+    "r0": {
+      "tag": "v1-astro-parity",
+      "figma": "backup",
+      "description": "No design system: the original Astro port (global CSS, no tokens, no components, no docs), with the original Figma file."
+    },
+    "a": {
+      "tag": "v7-ai-layer",
+      "figma": "current",
+      "description": "Tokens and components in code and variables in Figma, but no AGENTS.md, no docs, no component guides, no design-system MCP, no skill."
+    },
+    "b": {
+      "tag": "v7-ai-layer",
+      "figma": "current",
+      "description": "A plus AGENTS.md, CLAUDE.md, docs and component guides. No design-system MCP, no skill."
+    },
+    "c": {
+      "tag": "v7-ai-layer",
+      "figma": "current",
+      "description": "Everything: B plus the batatabit-ds MCP server and the build-section-from-figma skill."
+    },
+    "before": {
+      "demo": true,
+      "tag": "v1-astro-parity",
+      "figma": "backup",
+      "description": "Demo, before: the original Astro port. No tokens, components, docs, AGENTS.md, MCP or skill."
+    },
+    "after": {
+      "demo": true,
+      "tag": "main",
+      "figma": "current",
+      "remove": [
+        "bench"
+      ],
+      "description": "Demo, after: current main with the full design system, AGENTS.md, docs, the batatabit-ds MCP and the skill (bench/ removed so no benchmark notes leak)."
+    }
+  },
+  "tasks": {
+    "t1": {
+      "title": "FAQ from Figma",
+      "prompt": "bench/tasks/t1-faq.md",
+      "figma": true
+    },
+    "t2": {
+      "title": "Testimonials without a design",
+      "prompt": "bench/tasks/t2-testimonials.md",
+      "figma": false
+    },
+    "t3": {
+      "demo": true,
+      "title": "Login page",
+      "prompt": "bench/tasks/t3-login.md",
+      "figma": false
+    }
+  },
+  "runs": [
+    {
+      "id": "before-t3-1",
+      "round": "before",
+      "task": "t3",
+      "run": 1,
+      "tag": "v1-astro-parity",
+      "scoredAt": "2026-10-31T19:11:11.172Z",
+      "ran": true,
+      "durationSec": 45,
+      "apiSeconds": 40,
+      "costUsd": 0.21450580000000002,
+      "numTurns": 12,
+      "totalTokens": 264600,
+      "outputTokens": 7087,
+      "permissionDenials": 2,
+      "agentFinished": true,
+      "stopSubtype": "success",
+      "wallSeconds": 47,
+      "timedOut": false,
+      "figmaCalls": 0,
+      "batatabitCalls": 0,
+      "validateFileCalls": 0,
+      "docsRead": 0,
+      "skillUsed": false,
+      "skillsLoaded": [],
+      "toolCalls": {
+        "Bash": 6,
+        "Edit": 3,
+        "Write": 1,
+        "Read": 1
+      },
+      "figmaAvailable": true,
+      "changedFiles": [
+        "src/layouts/BaseLayout.astro",
+        "src/styles/global.css",
+        "src/pages/login.astro"
+      ],
+      "issueCount": 48,
+      "issuesByRule": {
+        "raw-spacing": 17,
+        "raw-color": 6,
+        "raw-radius": 3,
+        "raw-shadow": 2,
+        "raw-font-size": 6,
+        "raw-font-weight": 5,
+        "raw-line-height": 3,
+        "raw-font-family": 2,
+        "raw-border-width": 2,
+        "raw-html-component": 2
+      },
+      "rawHtmlIssues": 2,
+      "rawValueIssues": 46,
+      "issues": [
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 577,
+          "column": 12,
+          "message": "Raw spacing value in \"padding\".",
+          "found": "40px",
+          "suggestion": "Use var(--space-40) (space.40).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 577,
+          "column": 19,
+          "message": "Raw spacing value in \"padding\".",
+          "found": "90px",
+          "suggestion": "Not on the 4px scale. Nearest: var(--space-80) (space.80, 10px away). Report the value if the design needs it exactly.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-color",
+          "severity": "error",
+          "line": 578,
+          "column": 41,
+          "message": "Hardcoded colour in \"background\".",
+          "found": "#201e1c",
+          "suggestion": "Exact match: var(--color-surface-dark) (color.surface-dark: Darkest surface: background of dark sections and the dark end of gradient.hero) or var(--color-text-strong) (color.text-strong: Primary text on light surfaces: headings, prices, plan titles, table titles and values) or var(--color-on-primary) (color.on-primary: Text and icons placed on color.primary fills: solid orange badge, footer links). Pick the one whose description fits the role.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-color",
+          "severity": "error",
+          "line": 578,
+          "column": 57,
+          "message": "Hardcoded colour in \"background\".",
+          "found": "#f7931a",
+          "suggestion": "Exact match: var(--color-primary) (color.primary: Brand orange for solid fills and non-text accents: footer background, solid badge background, accent bars, icons). Pick the one whose description fits the role.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 589,
+          "column": 14,
+          "message": "Raw spacing value in \"padding\".",
+          "found": "16px",
+          "suggestion": "Use var(--space-16) (space.16).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 589,
+          "column": 19,
+          "message": "Raw spacing value in \"padding\".",
+          "found": "60px",
+          "suggestion": "Not on the 4px scale. Nearest: var(--space-64) (space.64, 4px away). Report the value if the design needs it exactly.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 595,
+          "column": 11,
+          "message": "Raw spacing value in \"margin\".",
+          "found": "-60px",
+          "suggestion": "Not on the 4px scale. Nearest: calc(var(--space-64) * -1) (space.64, 4px away). Report the value if the design needs it exactly.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 596,
+          "column": 12,
+          "message": "Raw spacing value in \"padding\".",
+          "found": "30px",
+          "suggestion": "Not on the 4px scale. Nearest: var(--space-32) (space.32, 2px away). Report the value if the design needs it exactly.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 596,
+          "column": 17,
+          "message": "Raw spacing value in \"padding\".",
+          "found": "24px",
+          "suggestion": "Use var(--space-24) (space.24).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-radius",
+          "severity": "error",
+          "line": 598,
+          "column": 18,
+          "message": "Raw border radius.",
+          "found": "15px",
+          "suggestion": "Use a semantic radius token: nearest var(--radius-card) (radius.card: Corner radius of large cards and table grids: plan cards, currency tables) (7px away).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-shadow",
+          "severity": "error",
+          "line": 599,
+          "column": 15,
+          "message": "Raw box shadow.",
+          "found": "0 4px 8px rgba(89, 73, 30, 0.16)",
+          "suggestion": "Use var(--shadow-on-light) on light surfaces or var(--shadow-on-dark) on dark ones.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-color",
+          "severity": "error",
+          "line": 599,
+          "column": 25,
+          "message": "Hardcoded colour in \"box-shadow\".",
+          "found": "rgba(89, 73, 30, 0.16)",
+          "suggestion": "No exact token. Nearest: var(--color-surface-dark-raised) (color.surface-dark-raised: Surface one step above color.surface-dark, for cards on a dark section (feature cards)) (ΔE 30.29); var(--color-text-on-soft) (color.text-on-soft: Text drawn over color.primary-soft or color.secondary-soft chips) (ΔE 30.29). No close semantic colour. Do not add a raw value: check the Figma style or variable, or add a token with a description.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-size",
+          "severity": "error",
+          "line": 603,
+          "column": 14,
+          "message": "Raw font size.",
+          "found": "2.4rem",
+          "suggestion": "Use a text style with that size: text.heading-lg (set size, weight and line height together; see --text-heading-lg-size).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-weight",
+          "severity": "error",
+          "line": 604,
+          "column": 16,
+          "message": "Raw font weight.",
+          "found": "bold",
+          "suggestion": "Use the weight of a text.* style (for example var(--text-button-weight)); do not set weights by hand.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-line-height",
+          "severity": "error",
+          "line": 605,
+          "column": 16,
+          "message": "Raw line height.",
+          "found": "2.6rem",
+          "suggestion": "Use the line-height of a text.* style (for example var(--text-body-sm-line)); set size, weight and line height together.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 611,
+          "column": 11,
+          "message": "Raw spacing value in \"margin\".",
+          "found": "15px",
+          "suggestion": "Not on the 4px scale. Nearest: var(--space-16) (space.16, 1px away). Report the value if the design needs it exactly.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 611,
+          "column": 18,
+          "message": "Raw spacing value in \"margin\".",
+          "found": "30px",
+          "suggestion": "Not on the 4px scale. Nearest: var(--space-32) (space.32, 2px away). Report the value if the design needs it exactly.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-size",
+          "severity": "error",
+          "line": 612,
+          "column": 14,
+          "message": "Raw font size.",
+          "found": "1.4rem",
+          "suggestion": "Use a text style with that size: text.lead, text.body-sm, text.button (set size, weight and line height together; see --text-lead-size).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-weight",
+          "severity": "error",
+          "line": 613,
+          "column": 16,
+          "message": "Raw font weight.",
+          "found": "500",
+          "suggestion": "Use the weight of a text.* style (for example var(--text-button-weight)); do not set weights by hand.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-line-height",
+          "severity": "error",
+          "line": 614,
+          "column": 16,
+          "message": "Raw line height.",
+          "found": "1.8rem",
+          "suggestion": "Use the line-height of a text.* style (for example var(--text-body-sm-line)); set size, weight and line height together.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-color",
+          "severity": "error",
+          "line": 616,
+          "column": 10,
+          "message": "Hardcoded colour in \"color\".",
+          "found": "#757575",
+          "suggestion": "No exact token. Nearest: var(--color-text-muted) (color.text-muted: Secondary text on light surfaces: lead paragraphs, table labels, small notes) (ΔE 2.8); var(--color-text-muted-on-dark) (color.text-muted-on-dark: Secondary text on dark surfaces: section leads, card body text) (ΔE 11.32). No exact match; the nearest semantic token is visually close (ΔE ≤ 6). Treat the raw value as drift and use it.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 625,
+          "column": 18,
+          "message": "Raw spacing value in \"margin-bottom\".",
+          "found": "8px",
+          "suggestion": "Use var(--space-8) (space.8).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-size",
+          "severity": "error",
+          "line": 626,
+          "column": 14,
+          "message": "Raw font size.",
+          "found": "1.4rem",
+          "suggestion": "Use a text style with that size: text.lead, text.body-sm, text.button (set size, weight and line height together; see --text-lead-size).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-weight",
+          "severity": "error",
+          "line": 627,
+          "column": 16,
+          "message": "Raw font weight.",
+          "found": "500",
+          "suggestion": "Use the weight of a text.* style (for example var(--text-button-weight)); do not set weights by hand.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-line-height",
+          "severity": "error",
+          "line": 628,
+          "column": 16,
+          "message": "Raw line height.",
+          "found": "1.8rem",
+          "suggestion": "Use the line-height of a text.* style (for example var(--text-body-sm-line)); set size, weight and line height together.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 635,
+          "column": 18,
+          "message": "Raw spacing value in \"margin-bottom\".",
+          "found": "20px",
+          "suggestion": "Use var(--space-20) (space.20).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 636,
+          "column": 14,
+          "message": "Raw spacing value in \"padding\".",
+          "found": "14px",
+          "suggestion": "Not on the 4px scale. Nearest: var(--space-12) (space.12, 2px away). Report the value if the design needs it exactly.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-family",
+          "severity": "error",
+          "line": 638,
+          "column": 16,
+          "message": "Raw font family.",
+          "found": "\"DM Sans\", sans-serif",
+          "suggestion": "Use var(--font-body) for headings and running text or var(--font-data) for data, numbers and small labels (or a text.* style's -family).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-size",
+          "severity": "error",
+          "line": 639,
+          "column": 14,
+          "message": "Raw font size.",
+          "found": "1.6rem",
+          "suggestion": "Use a text style with that size: text.data-label, text.data-value (set size, weight and line height together; see --text-data-label-size).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-border-width",
+          "severity": "error",
+          "line": 642,
+          "column": 11,
+          "message": "Raw border width in \"border\".",
+          "found": "2px",
+          "suggestion": "Use var(--border-button) (border.button: Border width of outline buttons: 2px.).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-radius",
+          "severity": "error",
+          "line": 643,
+          "column": 18,
+          "message": "Raw border radius.",
+          "found": "5px",
+          "suggestion": "Use a semantic radius token: nearest var(--radius-button) (radius.button: Corner radius of every button: 4px.) (1px away).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-color",
+          "severity": "error",
+          "line": 648,
+          "column": 10,
+          "message": "Hardcoded colour in \"color\".",
+          "found": "#757575",
+          "suggestion": "No exact token. Nearest: var(--color-text-muted) (color.text-muted: Secondary text on light surfaces: lead paragraphs, table labels, small notes) (ΔE 2.8); var(--color-text-muted-on-dark) (color.text-muted-on-dark: Secondary text on dark surfaces: section leads, card body text) (ΔE 11.32). No exact match; the nearest semantic token is visually close (ΔE ≤ 6). Treat the raw value as drift and use it.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 659,
+          "column": 18,
+          "message": "Raw spacing value in \"margin-bottom\".",
+          "found": "25px",
+          "suggestion": "Not on the 4px scale. Nearest: var(--space-24) (space.24, 1px away). Report the value if the design needs it exactly.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-spacing",
+          "severity": "error",
+          "line": 660,
+          "column": 12,
+          "message": "Raw spacing value in \"padding\".",
+          "found": "4px",
+          "suggestion": "Use var(--space-4) (space.4).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-size",
+          "severity": "error",
+          "line": 661,
+          "column": 14,
+          "message": "Raw font size.",
+          "found": "1.4rem",
+          "suggestion": "Use a text style with that size: text.lead, text.body-sm, text.button (set size, weight and line height together; see --text-lead-size).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-weight",
+          "severity": "error",
+          "line": 662,
+          "column": 16,
+          "message": "Raw font weight.",
+          "found": "500",
+          "suggestion": "Use the weight of a text.* style (for example var(--text-button-weight)); do not set weights by hand.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-family",
+          "severity": "error",
+          "line": 678,
+          "column": 16,
+          "message": "Raw font family.",
+          "found": "\"DM Sans\", sans-serif",
+          "suggestion": "Use var(--font-body) for headings and running text or var(--font-data) for data, numbers and small labels (or a text.* style's -family).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-size",
+          "severity": "error",
+          "line": 679,
+          "column": 14,
+          "message": "Raw font size.",
+          "found": "1.4rem",
+          "suggestion": "Use a text style with that size: text.lead, text.body-sm, text.button (set size, weight and line height together; see --text-lead-size).",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-font-weight",
+          "severity": "error",
+          "line": 680,
+          "column": 16,
+          "message": "Raw font weight.",
+          "found": "bold",
+          "suggestion": "Use the weight of a text.* style (for example var(--text-button-weight)); do not set weights by hand.",
+          "file": "src/styles/global.css"
+        },
+        {
+          "rule": "raw-radius",
+          "severity": "error",
+          "line": 684,
+          "column": 18,
+          "message": "Raw border radius.",
+          "found": "5px",
+          "suggestion": "Use a semantic radius token: nearest var(--radius-button) (radius.button: Corner radius of every button: 4px.) (1px away).",
+          "file": "src/styles/global.css"
+        }
+      ],
+      "componentsUsed": {},
+      "componentsReused": 0,
+      "componentUses": 0,
+      "reuseRatio": 0,
+      "newComponents": 0,
+      "newComponentNames": [],
+      "newComponentsDocumented": 0,
+      "newComponentsDocsPass": 0,
+      "astroErrors": 0,
+      "astroWarnings": 0,
+      "astroHints": 0,
+      "astroRaw": {
+        "errors": 0,
+        "warnings": 0,
+        "hints": 0
+      },
+      "buildOk": true,
+      "contrastFailures": 0,
+      "contrastFailuresTotal": 0,
+      "contrastSummary": "834px: 6 text elements checked, 0 failures; UI checks: ; skipped (gradient/image): none",
+      "focusRingFailures": 6,
+      "focusSummary": "worst 1.00:1, 6 failing elements",
+      "noOverflow834": true,
+      "login834": {
+        "loginFound": true,
+        "formPresent": true,
+        "fieldCount": 2,
+        "emailType": "email",
+        "emailTypeOk": true,
+        "emailAutocompleteOk": true,
+        "passwordAutocompleteOk": true,
+        "labelsOk": true,
+        "visibleLabelsOk": true,
+        "requiredOk": true,
+        "submitIsRealButton": true,
+        "submitLabelExact": true,
+        "forgotLinkOk": true,
+        "h1Count": 1,
+        "h1Unobstructed": false,
+        "controlsUnobstructed": true,
+        "minTargetHeight": 26,
+        "regionFound": true,
+        "toggleWorks": false,
+        "overflow": false
+      },
+      "loginFound": true,
+      "labelsOk": true,
+      "visibleLabelsOk": true,
+      "emailTypeOk": true,
+      "emailAutocompleteOk": true,
+      "passwordAutocompleteOk": true,
+      "submitIsRealButton": true,
+      "submitLabelExact": true,
+      "forgotLinkOk": true,
+      "requiredOk": true,
+      "h1Unobstructed": false,
+      "controlsUnobstructed": true,
+      "h1Count": 1,
+      "minTargetHeight": 26,
+      "noOverflow375": true,
+      "login375": {
+        "loginFound": true,
+        "formPresent": true,
+        "fieldCount": 2,
+        "emailType": "email",
+        "emailTypeOk": true,
+        "emailAutocompleteOk": true,
+        "passwordAutocompleteOk": true,
+        "labelsOk": true,
+        "visibleLabelsOk": true,
+        "requiredOk": true,
+        "submitIsRealButton": true,
+        "submitLabelExact": true,
+        "forgotLinkOk": true,
+        "h1Count": 1,
+        "h1Unobstructed": false,
+        "controlsUnobstructed": true,
+        "minTargetHeight": 26,
+        "regionFound": true,
+        "toggleWorks": false,
+        "overflow": false
+      },
+      "featureWorksBothWidths": true
+    },
+    {
+      "id": "after-t3-1",
+      "round": "after",
+      "task": "t3",
+      "run": 1,
+      "tag": "main",
+      "scoredAt": "2026-10-31T19:11:25.220Z",
+      "ran": true,
+      "durationSec": 200,
+      "apiSeconds": 178,
+      "costUsd": 0.42510520000000007,
+      "numTurns": 30,
+      "totalTokens": 1072376,
+      "outputTokens": 12274,
+      "permissionDenials": 4,
+      "agentFinished": true,
+      "stopSubtype": "success",
+      "wallSeconds": 202,
+      "timedOut": false,
+      "figmaCalls": 0,
+      "batatabitCalls": 0,
+      "validateFileCalls": 0,
+      "docsRead": 0,
+      "skillUsed": false,
+      "skillsLoaded": [],
+      "toolCalls": {
+        "Bash": 19,
+        "Write": 4,
+        "Edit": 3,
+        "Read": 3
+      },
+      "figmaAvailable": true,
+      "changedFiles": [
+        "docs/components.md",
+        "src/components/Button/Button.astro",
+        "src/components/Button/Button.md",
+        "src/layouts/BaseLayout.astro",
+        "src/styles/tokens.css",
+        "src/tokens/tokens.json",
+        "src/components/TextField/TextField.astro",
+        "src/components/TextField/TextField.md",
+        "src/pages/login.astro"
+      ],
+      "issueCount": 0,
+      "issuesByRule": {},
+      "rawHtmlIssues": 0,
+      "rawValueIssues": 0,
+      "issues": [],
+      "componentsUsed": {
+        "Button": 1,
+        "SectionTitle": 1
+      },
+      "componentsReused": 2,
+      "componentUses": 2,
+      "reuseRatio": 1,
+      "newComponents": 1,
+      "newComponentNames": [
+        "TextField"
+      ],
+      "newComponentsDocumented": 1,
+      "newComponentsDocsPass": 1,
+      "astroErrors": 0,
+      "astroWarnings": 0,
+      "astroHints": 0,
+      "astroRaw": {
+        "errors": 0,
+        "warnings": 0,
+        "hints": 0
+      },
+      "buildOk": true,
+      "contrastFailures": 0,
+      "contrastFailuresTotal": 0,
+      "contrastSummary": "834px: 6 text elements checked, 0 failures; UI checks: button--outline 3.41; skipped (gradient/image): none",
+      "focusRingFailures": 2,
+      "focusSummary": "worst 1.00:1, 2 failing elements",
+      "noOverflow834": true,
+      "login834": {
+        "loginFound": true,
+        "formPresent": true,
+        "fieldCount": 2,
+        "emailType": "email",
+        "emailTypeOk": true,
+        "emailAutocompleteOk": true,
+        "passwordAutocompleteOk": true,
+        "labelsOk": true,
+        "visibleLabelsOk": true,
+        "requiredOk": true,
+        "submitIsRealButton": true,
+        "submitLabelExact": true,
+        "forgotLinkOk": true,
+        "h1Count": 1,
+        "h1Unobstructed": true,
+        "controlsUnobstructed": true,
+        "minTargetHeight": 26,
+        "regionFound": true,
+        "toggleWorks": false,
+        "overflow": false
+      },
+      "loginFound": true,
+      "labelsOk": true,
+      "visibleLabelsOk": true,
+      "emailTypeOk": true,
+      "emailAutocompleteOk": true,
+      "passwordAutocompleteOk": true,
+      "submitIsRealButton": true,
+      "submitLabelExact": true,
+      "forgotLinkOk": true,
+      "requiredOk": true,
+      "h1Unobstructed": true,
+      "controlsUnobstructed": true,
+      "h1Count": 1,
+      "minTargetHeight": 26,
+      "noOverflow375": true,
+      "login375": {
+        "loginFound": true,
+        "formPresent": true,
+        "fieldCount": 2,
+        "emailType": "email",
+        "emailTypeOk": true,
+        "emailAutocompleteOk": true,
+        "passwordAutocompleteOk": true,
+        "labelsOk": true,
+        "visibleLabelsOk": true,
+        "requiredOk": true,
+        "submitIsRealButton": true,
+        "submitLabelExact": true,
+        "forgotLinkOk": true,
+        "h1Count": 1,
+        "h1Unobstructed": true,
+        "controlsUnobstructed": true,
+        "minTargetHeight": 26,
+        "regionFound": true,
+        "toggleWorks": false,
+        "overflow": false
+      },
+      "featureWorksBothWidths": true
+    }
+  ],
+  "medians": {
+    "t3": {
+      "before": {
+        "runs": 1,
+        "stats": {
+          "issueCount": {
+            "median": 48,
+            "min": 48,
+            "max": 48,
+            "n": 1
+          },
+          "rawValueIssues": {
+            "median": 46,
+            "min": 46,
+            "max": 46,
+            "n": 1
+          },
+          "componentsReused": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "componentUses": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "rawHtmlIssues": {
+            "median": 2,
+            "min": 2,
+            "max": 2,
+            "n": 1
+          },
+          "reuseRatio": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "newComponents": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "newComponentsDocumented": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "newComponentsDocsPass": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "contrastFailures": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "focusRingFailures": {
+            "median": 6,
+            "min": 6,
+            "max": 6,
+            "n": 1
+          },
+          "astroErrors": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "astroWarnings": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "astroHints": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "questionsFound": null,
+          "visualDiff834": null,
+          "visualDiff375": null,
+          "testimonialItems": null,
+          "offPaletteColors": null,
+          "offFonts": null,
+          "durationSec": {
+            "median": 45,
+            "min": 45,
+            "max": 45,
+            "n": 1
+          },
+          "totalTokens": {
+            "median": 264600,
+            "min": 264600,
+            "max": 264600,
+            "n": 1
+          },
+          "costUsd": {
+            "median": 0.21450580000000002,
+            "min": 0.21450580000000002,
+            "max": 0.21450580000000002,
+            "n": 1
+          },
+          "numTurns": {
+            "median": 12,
+            "min": 12,
+            "max": 12,
+            "n": 1
+          },
+          "figmaCalls": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "batatabitCalls": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "validateFileCalls": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "docsRead": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "permissionDenials": {
+            "median": 2,
+            "min": 2,
+            "max": 2,
+            "n": 1
+          }
+        },
+        "issueCount": 48,
+        "rawValueIssues": 46,
+        "componentsReused": 0,
+        "componentUses": 0,
+        "rawHtmlIssues": 2,
+        "reuseRatio": 0,
+        "newComponents": 0,
+        "newComponentsDocumented": 0,
+        "newComponentsDocsPass": 0,
+        "contrastFailures": 0,
+        "focusRingFailures": 6,
+        "astroErrors": 0,
+        "astroWarnings": 0,
+        "astroHints": 0,
+        "questionsFound": null,
+        "visualDiff834": null,
+        "visualDiff375": null,
+        "testimonialItems": null,
+        "offPaletteColors": null,
+        "offFonts": null,
+        "durationSec": 45,
+        "totalTokens": 264600,
+        "costUsd": 0.21450580000000002,
+        "numTurns": 12,
+        "figmaCalls": 0,
+        "batatabitCalls": 0,
+        "validateFileCalls": 0,
+        "docsRead": 0,
+        "permissionDenials": 2,
+        "h1Unobstructed": "0/1",
+        "controlsUnobstructed": "1/1",
+        "loginFound": "1/1",
+        "labelsOk": "1/1",
+        "visibleLabelsOk": "1/1",
+        "emailTypeOk": "1/1",
+        "emailAutocompleteOk": "1/1",
+        "passwordAutocompleteOk": "1/1",
+        "submitIsRealButton": "1/1",
+        "submitLabelExact": "1/1",
+        "forgotLinkOk": "1/1",
+        "requiredOk": "1/1",
+        "ran": "1/1",
+        "agentFinished": "1/1",
+        "buildOk": "1/1",
+        "faqFound": null,
+        "testimonialsFound": null,
+        "positionCorrect": null,
+        "interactive": null,
+        "noOverflow834": "1/1",
+        "noOverflow375": "1/1",
+        "featureWorksBothWidths": "1/1",
+        "figmaAvailable": "1/1",
+        "skillUsed": "0/1",
+        "issuesByRule": {
+          "raw-border-width": 2,
+          "raw-color": 6,
+          "raw-font-family": 2,
+          "raw-font-size": 6,
+          "raw-font-weight": 5,
+          "raw-html-component": 2,
+          "raw-line-height": 3,
+          "raw-radius": 3,
+          "raw-shadow": 2,
+          "raw-spacing": 17
+        },
+        "skills": []
+      },
+      "after": {
+        "runs": 1,
+        "stats": {
+          "issueCount": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "rawValueIssues": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "componentsReused": {
+            "median": 2,
+            "min": 2,
+            "max": 2,
+            "n": 1
+          },
+          "componentUses": {
+            "median": 2,
+            "min": 2,
+            "max": 2,
+            "n": 1
+          },
+          "rawHtmlIssues": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "reuseRatio": {
+            "median": 1,
+            "min": 1,
+            "max": 1,
+            "n": 1
+          },
+          "newComponents": {
+            "median": 1,
+            "min": 1,
+            "max": 1,
+            "n": 1
+          },
+          "newComponentsDocumented": {
+            "median": 1,
+            "min": 1,
+            "max": 1,
+            "n": 1
+          },
+          "newComponentsDocsPass": {
+            "median": 1,
+            "min": 1,
+            "max": 1,
+            "n": 1
+          },
+          "contrastFailures": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "focusRingFailures": {
+            "median": 2,
+            "min": 2,
+            "max": 2,
+            "n": 1
+          },
+          "astroErrors": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "astroWarnings": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "astroHints": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "questionsFound": null,
+          "visualDiff834": null,
+          "visualDiff375": null,
+          "testimonialItems": null,
+          "offPaletteColors": null,
+          "offFonts": null,
+          "durationSec": {
+            "median": 200,
+            "min": 200,
+            "max": 200,
+            "n": 1
+          },
+          "totalTokens": {
+            "median": 1072376,
+            "min": 1072376,
+            "max": 1072376,
+            "n": 1
+          },
+          "costUsd": {
+            "median": 0.42510520000000007,
+            "min": 0.42510520000000007,
+            "max": 0.42510520000000007,
+            "n": 1
+          },
+          "numTurns": {
+            "median": 30,
+            "min": 30,
+            "max": 30,
+            "n": 1
+          },
+          "figmaCalls": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "batatabitCalls": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "validateFileCalls": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "docsRead": {
+            "median": 0,
+            "min": 0,
+            "max": 0,
+            "n": 1
+          },
+          "permissionDenials": {
+            "median": 4,
+            "min": 4,
+            "max": 4,
+            "n": 1
+          }
+        },
+        "issueCount": 0,
+        "rawValueIssues": 0,
+        "componentsReused": 2,
+        "componentUses": 2,
+        "rawHtmlIssues": 0,
+        "reuseRatio": 1,
+        "newComponents": 1,
+        "newComponentsDocumented": 1,
+        "newComponentsDocsPass": 1,
+        "contrastFailures": 0,
+        "focusRingFailures": 2,
+        "astroErrors": 0,
+        "astroWarnings": 0,
+        "astroHints": 0,
+        "questionsFound": null,
+        "visualDiff834": null,
+        "visualDiff375": null,
+        "testimonialItems": null,
+        "offPaletteColors": null,
+        "offFonts": null,
+        "durationSec": 200,
+        "totalTokens": 1072376,
+        "costUsd": 0.42510520000000007,
+        "numTurns": 30,
+        "figmaCalls": 0,
+        "batatabitCalls": 0,
+        "validateFileCalls": 0,
+        "docsRead": 0,
+        "permissionDenials": 4,
+        "h1Unobstructed": "1/1",
+        "controlsUnobstructed": "1/1",
+        "loginFound": "1/1",
+        "labelsOk": "1/1",
+        "visibleLabelsOk": "1/1",
+        "emailTypeOk": "1/1",
+        "emailAutocompleteOk": "1/1",
+        "passwordAutocompleteOk": "1/1",
+        "submitIsRealButton": "1/1",
+        "submitLabelExact": "1/1",
+        "forgotLinkOk": "1/1",
+        "requiredOk": "1/1",
+        "ran": "1/1",
+        "agentFinished": "1/1",
+        "buildOk": "1/1",
+        "faqFound": null,
+        "testimonialsFound": null,
+        "positionCorrect": null,
+        "interactive": null,
+        "noOverflow834": "1/1",
+        "noOverflow375": "1/1",
+        "featureWorksBothWidths": "1/1",
+        "figmaAvailable": "1/1",
+        "skillUsed": "0/1",
+        "issuesByRule": {},
+        "skills": []
+      }
+    }
+  }
+}
