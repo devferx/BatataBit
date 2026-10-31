@@ -1,0 +1,179 @@
+/* GENERADO por scripts/build-tokens.mjs desde src/tokens/tokens.json. No editar a mano. */
+:root {
+  /* Primitivos */
+  --color-orange-100: #FFE9D4;
+  --color-orange-500: #F7931A;
+  --color-blue-100: #E7F5FF;
+  --color-blue-500: #1A9AF7;
+  --color-neutral-0: #FFFFFF;
+  --color-neutral-50: #FAF8F7;
+  --color-neutral-300: #BABABA;
+  --color-neutral-500: #808080;
+  --color-neutral-600: #757575;
+  --color-neutral-800: #282623;
+  --color-neutral-900: #201E1C;
+  --color-green-500: #07D635;
+  --color-red-500: #F5450D;
+  --font-family-sans: "DM Sans", sans-serif;
+  --font-family-data: Inter, sans-serif;
+  --font-size-12: 1.2rem;
+  --font-size-14: 1.4rem;
+  --font-size-16: 1.6rem;
+  --font-size-18: 1.8rem;
+  --font-size-20: 2rem;
+  --font-size-24: 2.4rem;
+  --font-size-40: 4rem;
+  --font-size-52: 5.2rem;
+  --font-line-height-15: 1.5rem;
+  --font-line-height-16: 1.6rem;
+  --font-line-height-17: 1.7rem;
+  --font-line-height-18: 1.8rem;
+  --font-line-height-19: 1.9rem;
+  --font-line-height-23: 2.3rem;
+  --font-line-height-24: 2.4rem;
+  --font-line-height-26: 2.6rem;
+  --font-line-height-42: 4.2rem;
+  --font-line-height-53: 5.3rem;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --radius-4: 4px;
+  --radius-5: 5px;
+  --radius-8: 8px;
+  --radius-15: 15px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --shadow-sombra-blanco: 0px 4px 8px 0px rgba(89, 73, 30, 0.16);
+  --shadow-sombra-negro: 0px 4px 8px 0px rgba(0, 0, 0, 0.16);
+
+  /* Semánticos */
+  /* Brand orange. Use for accent text on light surfaces (table titles), badges/highlights, the footer background and the outline of secondary CTA buttons. Never use as body-text colour: contrast on off-white is 2.17:1 (fails WCAG AA). White text on it also fails (2.3:1); see color.on-primary. */
+  --color-primary: var(--color-orange-500);
+  /* Light orange tint. Use as a soft background for chips/pills (e.g. the 'Actualizado' date chip) and as the lead-paragraph text colour over the dark-to-orange hero gradient. Pair chip text with color.text-on-soft. */
+  --color-primary-soft: var(--color-orange-100);
+  /* Brand blue. Use for accent text on light surfaces (the 'Comisiones' table title) and for the secondary badge background ('Más vendido'). Do not use for body text: contrast on off-white is 2.83:1. */
+  --color-secondary: var(--color-blue-500);
+  /* Light blue tint. Use as a soft chip/pill background in the blue variant (e.g. the date chip of the 'Comisiones' table). Pair text with color.text-on-soft. */
+  --color-secondary-soft: var(--color-blue-100);
+  /* Darkest surface. Use as the background of dark sections (product-detail block) and as the dark end of gradient.hero. Text on it: color.text-on-dark or color.text-muted-on-dark. */
+  --color-surface-dark: var(--color-neutral-900);
+  /* Surface raised one step above color.surface-dark. Use for cards sitting on a dark section (feature cards). Not the page background. */
+  --color-surface-dark-raised: var(--color-neutral-800);
+  /* Default light page background (main content area) and the fill of buttons placed on light or gradient backgrounds. */
+  --color-surface-page: var(--color-neutral-50);
+  /* Pure white card/cell surface that sits on color.surface-page (plan cards, table cells). */
+  --color-surface-card: var(--color-neutral-0);
+  /* Primary text colour on light surfaces: headings, prices, button labels. Contrast on off-white 14.25:1. */
+  --color-text-strong: var(--color-neutral-800);
+  /* Secondary text on light surfaces (lead paragraphs, table values, small notes). Contrast is 4.61:1 on white but 4.35:1 on off-white (fails AA on off-white); candidate to darken in a later phase. */
+  --color-text-muted: var(--color-neutral-600);
+  /* Secondary text on dark surfaces (section lead, feature-card body). Contrast 3.82:1 on surface-dark-raised and 4.21:1 on surface-dark (fails AA); candidate to lighten later. */
+  --color-text-muted-on-dark: var(--color-neutral-500);
+  /* Primary text on dark surfaces and on the hero gradient: headings, card titles, links on dark. Not for text on orange; use color.on-primary. */
+  --color-text-on-dark: var(--color-neutral-0);
+  /* Text drawn over color.primary-soft or color.secondary-soft chips. Contrast ≈14:1. */
+  --color-text-on-soft: var(--color-neutral-900);
+  /* Decorative/de-emphasised text on white (the label column of data tables). Contrast on white is 1.94:1 (fails AA); do not use for essential information. */
+  --color-text-subtle: var(--color-neutral-300);
+  /* Text/icons placed on color.primary or color.secondary fills (badges, footer links). Currently white to preserve the original look, but it fails WCAG AA (2.3:1 on orange, 3.0:1 on blue); intended to change to a dark neutral in a later, deliberate phase. */
+  --color-on-primary: var(--color-neutral-0);
+  /* Positive-change indicator (price up). Currently consumed only by the trending-up SVG; becomes available to the Icon component in Phase 3. Always pair with a text/aria alternative; colour alone is not enough. */
+  --color-trend-up: var(--color-green-500);
+  /* Negative-change indicator (price down). Currently consumed only by the trending-down SVG. Always pair with a text/aria alternative. */
+  --color-trend-down: var(--color-red-500);
+  /* Default font for all UI text (set on the root). Use unless a rule explicitly calls for font.data. */
+  --font-body: var(--font-family-sans);
+  /* Font for tabular/numeric data (currency tables). Use only inside data tables. */
+  --font-data: var(--font-family-data);
+  /* Corner radius of filled buttons/links (hero CTA). Kept distinct from radius.button-outline (5px vs 4px) until they are deliberately unified. */
+  --radius-button: var(--radius-5);
+  /* Corner radius of outline buttons (plan CTA). Kept distinct from radius.button (4px vs 5px) until they are deliberately unified. */
+  --radius-button-outline: var(--radius-4);
+  /* Corner radius of large cards and table grids (plan cards, currency tables). */
+  --radius-card: var(--radius-15);
+  /* Corner radius of small cards on dark sections (feature cards). */
+  --radius-card-compact: var(--radius-5);
+  /* Corner radius of chips, pills and badges (date chip, 'Recomendado' badge). */
+  --radius-chip: var(--radius-8);
+  /* Elevation shadow for elements on light surfaces (buttons, plan cards). Warm-tinted. Figma: 'Sombra /Blanco'. */
+  --shadow-on-light: var(--shadow-sombra-blanco);
+  /* Elevation shadow for elements on dark surfaces (feature cards). Neutral black. Figma: 'Sombra /Negro'. */
+  --shadow-on-dark: var(--shadow-sombra-negro);
+  /* Hero background: diagonal gradient from dark (top-right) to brand orange (bottom-left). Use only for the page hero/header. Figma: 'Linear BG'. Angle 207.8deg is stored in $extensions because DTCG gradients have no angle; Figma stops/angle are still unverified (AUDIT §11). */
+  --gradient-hero: linear-gradient(207.8deg, var(--color-surface-dark) 16.69%, var(--color-primary) 100%);
+  /* Heading at viewport < 930px. Use for h1/h2. */
+  --text-heading-lg-family: var(--font-family-sans);
+  --text-heading-lg-size: var(--font-size-24);
+  --text-heading-lg-weight: var(--font-weight-bold);
+  --text-heading-lg-line: var(--font-line-height-26);
+  /* Heading at viewport ≥ 930px (Phase 5; not applied yet). */
+  --text-heading-lg-tablet-family: var(--font-family-sans);
+  --text-heading-lg-tablet-size: var(--font-size-40);
+  --text-heading-lg-tablet-weight: var(--font-weight-bold);
+  --text-heading-lg-tablet-line: var(--font-line-height-42);
+  /* Lead paragraph at viewport < 930px. */
+  --text-lead-family: var(--font-family-sans);
+  --text-lead-size: var(--font-size-14);
+  --text-lead-weight: var(--font-weight-medium);
+  --text-lead-line: var(--font-line-height-18);
+  /* Lead paragraph at viewport ≥ 930px (Phase 5; not applied yet). */
+  --text-lead-tablet-family: var(--font-family-sans);
+  --text-lead-tablet-size: var(--font-size-20);
+  --text-lead-tablet-weight: var(--font-weight-medium);
+  --text-lead-tablet-line: var(--font-line-height-24);
+  /* Small running text inside cards and lists: feature-card body, plan title, footer link list. Same values as text.lead.mobile but does NOT scale at tablet+. */
+  --text-body-sm-family: var(--font-family-sans);
+  --text-body-sm-size: var(--font-size-14);
+  --text-body-sm-weight: var(--font-weight-medium);
+  --text-body-sm-line: var(--font-line-height-18);
+  /* Label of any button or CTA link. Bold 14/18. (The hero link uses only size and weight; its line-height is left to the browser to keep the original rendering.) */
+  --text-button-family: var(--font-family-sans);
+  --text-button-size: var(--font-size-14);
+  --text-button-weight: var(--font-weight-bold);
+  --text-button-line: var(--font-line-height-18);
+  /* Legacy variant of text.lead with a tighter 16px line-height, used only by the exchange-section lead. Candidate to merge into text.lead; kept separate now for pixel parity. */
+  --text-lead-tight-family: var(--font-family-sans);
+  --text-lead-tight-size: var(--font-size-14);
+  --text-lead-tight-weight: var(--font-weight-medium);
+  --text-lead-tight-line: var(--font-line-height-16);
+  /* Title above a data table ('Monedas', 'Comisiones'). Bold 18/23 in the data font. */
+  --text-title-md-family: var(--font-family-data);
+  --text-title-md-size: var(--font-size-18);
+  --text-title-md-weight: var(--font-weight-bold);
+  --text-title-md-line: var(--font-line-height-23);
+  /* Title of a feature card. Bold 18/18 (line-height equals font-size; tight, single-line titles only). */
+  --text-title-sm-family: var(--font-family-sans);
+  --text-title-sm-size: var(--font-size-18);
+  --text-title-sm-weight: var(--font-weight-bold);
+  --text-title-sm-line: var(--font-line-height-18);
+  /* Cell text in data tables (labels and values). Regular 16/19 in the data font. */
+  --text-data-family: var(--font-family-data);
+  --text-data-size: var(--font-size-16);
+  --text-data-weight: var(--font-weight-regular);
+  --text-data-line: var(--font-line-height-19);
+  /* Smaller table value. Currently only referenced by a dead CSS rule (.table__right); kept for parity until removed. */
+  --text-data-sm-family: var(--font-family-data);
+  --text-data-sm-size: var(--font-size-14);
+  --text-data-sm-weight: var(--font-weight-regular);
+  --text-data-sm-line: var(--font-line-height-17);
+  /* Small supporting text: date chips, badges, price currency symbol, savings note. Light 300 / 12/15. Some uses take only the size. */
+  --text-caption-family: var(--font-family-sans);
+  --text-caption-size: var(--font-size-12);
+  --text-caption-weight: var(--font-weight-light);
+  --text-caption-line: var(--font-line-height-15);
+  /* Large price figure on a plan card. Bold 52/53. */
+  --text-price-family: var(--font-family-sans);
+  --text-price-size: var(--font-size-52);
+  --text-price-weight: var(--font-weight-bold);
+  --text-price-line: var(--font-line-height-53);
+}

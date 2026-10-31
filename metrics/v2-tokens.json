@@ -1,0 +1,90 @@
+{
+  "measuredAt": "2026-10-31T02:23:30.626Z",
+  "files": [
+    "src/styles/global.css"
+  ],
+  "cssLines": 550,
+  "tokensCssLines": 179,
+  "tokenReferences": 127,
+  "rawValuesOutsideTokens": {
+    "total": 40,
+    "colors": 0,
+    "typography": 1,
+    "radius": 0,
+    "shadow": 0,
+    "spacing": 39,
+    "distinctRawSpacing": [
+      "-15px",
+      "-10px",
+      "0px",
+      "2px",
+      "5px",
+      "6px",
+      "10px",
+      "15px",
+      "20px",
+      "25px",
+      "30px",
+      "35px",
+      "50px",
+      "60px",
+      "70px",
+      "118px",
+      "270px"
+    ]
+  },
+  "hardcodedColorLiterals": {
+    "count": 0,
+    "distinct": []
+  },
+  "fontSizeLineHeightPairs": {
+    "count": 11,
+    "pairs": {
+      "2.4rem/2.6rem": [
+        ".header--title-container h1",
+        ".main-exchange-container h2",
+        ".product-detail--title h2",
+        ".bitcoin-img-container h2",
+        ".plans--title h2"
+      ],
+      "1.4rem/1.8rem": [
+        ".header--title-container p",
+        ".product-detail--title p",
+        ".product--card-body",
+        ".plans--title p",
+        ".plan-card--title",
+        ".plan-card--ca",
+        "footer .left ul"
+      ],
+      "1.4rem/unset": [
+        ".header--title-container .header--button"
+      ],
+      "1.4rem/1.6rem": [
+        ".main-exchange-container p"
+      ],
+      "1.8rem/2.3rem": [
+        ".main-currency-table .currency-table--title"
+      ],
+      "1.6rem/1.9rem": [
+        ".currency-table--container--grid div"
+      ],
+      "1.4rem/1.7rem": [
+        ".currency-table--container--grid .table__right"
+      ],
+      "1.2rem/1.5rem": [
+        ".currency-table--date p"
+      ],
+      "1.8rem/1.8rem": [
+        ".product--card-title"
+      ],
+      "1.2rem/unset": [
+        ".recommended",
+        ".plan-card--price span",
+        ".plan-card--saving"
+      ],
+      "5.2rem/5.3rem": [
+        ".plan-card--price"
+      ]
+    }
+  }
+}
