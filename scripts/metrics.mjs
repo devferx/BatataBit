@@ -38,7 +38,8 @@ const cssLinesPerFile = {};
 // Custom properties definidas en tokens.css, para resolver var(--x) -> valor.
 const tokenDefs = new Map();
 if (existsSync(tokensFile)) {
-  for (const m of readFileSync(tokensFile, "utf8").matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) {
+  // Solo el bloque :root base: el @media tablet reasigna esas mismas variables.
+  for (const m of readFileSync(tokensFile, "utf8").split("@media")[0].matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) {
     tokenDefs.set(m[1], m[2].trim());
   }
 }

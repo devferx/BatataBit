@@ -481,3 +481,15 @@ Rule from the Figma work: values bound to Figma styles or variables are design d
 - **Content differences, resolved (last Figma pass):** code wins. The dark section in Figma now reads "Creamos un producto sin comparación." / "Confiable y diseñado para su uso diario." on the tablet and both phone frames that have it. The blue "Más vendido" badge (`color/secondary` fill, `color/on-secondary` text) was added to the Pago Mensual card on the tablet frame, the only frame with a Pago Mensual card (the phone frames show only the featured Pago Anual card). It is a copy of the Recomendado frame, not a component.
 - **FAQ section:** it stays in Figma and is **not to be implemented in code**; it is reserved as the live-demo task. Each FAQ heading carries the Figma annotation "Designed, not yet implemented in code." (tablet, iPhone 8 - 1, iPhone 8 - 2, iPhone SE). Phase 5b must leave it out of `index.astro`.
 - **Code still to fix in 5b:** the misspellings "Batabit" (hero lead in `index.astro`, `features.json` body 2) and "Babtabit" (`features.json` body 3).
+
+---
+
+## 8. Phase 5b record (code applied, tag `v4-fixes`)
+
+Everything in §7 was applied in code. Decisions made while doing it:
+- **Gradient stop:** left at 16.69%. The Dev Mode check on node `359:484` (Figma's raw first stop is 11.19%) is still open, so no value was changed. The hero lead stays `#FFE9D4`; measured live it is 3.03:1 at worst, the one documented contrast exception.
+- **Image heading:** "Conócelo hoy." failed contrast on the photo (1.76 to 2.79:1, large text needs 3:1). Fixed with `gradient.image-scrim` (55% `surface-dark` fading out at 75% of the height); the heading is now 3.65:1 or better. This scrim is **not in Figma yet**.
+- **Button:** now centres its content in a flex row with an 8px gap and a 16px side padding. The outline button is `min-width: 150px` with no wrapping, so it hugs a longer label.
+- **Table title:** same width as the grid, left-aligned, with the accent bar underneath.
+- **Plan card:** the note reserves two lines so the buttons line up across cards; the "$" no longer has a space before the price (as in Figma).
+- **`astro check`:** the Icon typing error present since Phase 3 is fixed; earlier checks filtered the singular "1 error" line out.

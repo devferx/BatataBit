@@ -64,7 +64,7 @@
   /* Semánticos */
   /* Brand orange for solid fills and non-text accents: footer background, solid badge background, accent bars, icons. Never for text (2.17:1 on off-white). Text placed on it uses color.on-primary. */
   --color-primary: var(--color-orange-500);
-  /* Tint of brand orange for soft backgrounds (chips, pills) and for the lead text on the hero gradient, the one documented contrast exception (2.98:1; see gradient.hero). Text on a primary-soft background uses color.text-on-soft. */
+  /* Tint of brand orange for soft backgrounds (chips, pills) and for the lead text on the hero gradient, the one documented contrast exception (3.03:1 at worst; see gradient.hero). Text on a primary-soft background uses color.text-on-soft. */
   --color-primary-soft: var(--color-orange-100);
   /* Brand blue for solid fills and non-text accents: secondary badge background, accent bars. Never for text (2.83:1 on off-white). Text placed on it uses color.on-secondary. */
   --color-secondary: var(--color-blue-500);
@@ -122,8 +122,10 @@
   --shadow-on-light: var(--shadow-sombra-blanco);
   /* Elevation shadow for elements on dark surfaces: feature cards. Neutral black. */
   --shadow-on-dark: var(--shadow-sombra-negro);
-  /* Hero background only: dark at the top-right to orange at the bottom-left. The hero lead (color.primary-soft) on it measures 2.98:1, below WCAG AA; this is a deliberate brand decision. Place no other text on this gradient. */
+  /* Hero background only: dark at the top-right to orange at the bottom-left. The hero lead (color.primary-soft) on it measures 3.03:1 at worst, below WCAG AA; this is a deliberate brand decision. Place no other text on this gradient. */
   --gradient-hero: linear-gradient(207.8deg, var(--color-surface-dark) 16.69%, var(--color-primary) 100%);
+  /* Dark scrim over the top of a photo that carries white text (the 'Conócelo hoy.' heading): 55% surface-dark fading to transparent at 75% of the height. Keeps white text at 3:1 or better on the photo; add it to any photo section with text on top. */
+  --gradient-image-scrim: linear-gradient(180deg, color-mix(in srgb, var(--color-surface-dark) 55%, transparent) 0%, transparent 75%);
   /* Space above the hero logo: 48px on mobile, 80px from the tablet breakpoint. */
   --layout-hero-padding-top: var(--space-48);
   /* Space above the hero logo: 48px on mobile, 80px from the tablet breakpoint. */

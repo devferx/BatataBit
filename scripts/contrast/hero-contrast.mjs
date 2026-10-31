@@ -1,10 +1,11 @@
 // Contraste mínimo del h1 y del lead del hero sobre el degradado real renderizado.
 // Pone el texto transparente, captura el fondo y mide cada píxel bajo las líneas de texto reales.
-// Uso: node scripts/contrast/hero-contrast.mjs <url> [--widths 320,375,...] [--options id,id]
+// Uso: node scripts/contrast/hero-contrast.mjs <url> [--widths 320,375,...] [--options id,id] [--live]
+// --live mide la página tal cual (degradado, maqueta y color del lead reales), sin inyectar CSS de prueba.
 import { chromium } from "@playwright/test";
 import { PNG } from "pngjs";
 import { contrast } from "./contrast.mjs";
-import { OPTIONS, gradientCss, leadColorCss, layoutCss } from "./hero-preview.mjs";
+import { OPTIONS, gradientCss, layoutCss } from "./hero-preview.mjs";
 
 const args = process.argv.slice(2);
 const flag = (name, dflt) => {
@@ -13,6 +14,9 @@ const flag = (name, dflt) => {
 };
 const widths = flag("--widths", "320,375,600,768,930,1024,1200,1440,1920").split(",").map(Number);
 const only = flag("--options", "").split(",").filter(Boolean);
+const liveIdx = args.indexOf("--live");
+const live = liveIdx >= 0;
+if (live) args.splice(liveIdx, 1);
 const url = args[0];
 if (!url) {
   console.error("Uso: node scripts/contrast/hero-contrast.mjs <url> [--widths ...] [--options ...]");
@@ -23,13 +27,14 @@ const hexOf = (r, g, b) => "#" + [r, g, b].map((v) => v.toString(16).padStart(2,
 const browser = await chromium.launch();
 const summary = {};
 
-for (const opt of OPTIONS.filter((o) => !only.length || only.includes(o.id))) {
+const options = live ? [{ id: "live", label: "Live page", lead: "#FFE9D4" }] : OPTIONS.filter((o) => !only.length || only.includes(o.id));
+for (const opt of options) {
   const perWidth = [];
   for (const width of widths) {
     const page = await (await browser.newContext({ viewport: { width, height: 900 } })).newPage();
     await page.goto(url, { waitUntil: "networkidle" });
     await page.addStyleTag({
-      content: gradientCss(opt.stop) + layoutCss(width) + "header h1,header p{color:transparent!important}",
+      content: (live ? "" : gradientCss(opt.stop) + layoutCss(width)) + "header h1,header p{color:transparent!important}",
     });
     const lines = await page.evaluate(() =>
       ["header h1", "header p"].map((sel) => {

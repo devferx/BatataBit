@@ -63,7 +63,12 @@ const declarations = ({ path, token }) => {
       return [[name, `${v.offsetX} ${v.offsetY} ${v.blur} ${v.spread} ${v.color}`]];
     case "gradient": {
       const angle = token.$extensions?.["batatabit.angle"] ?? "180deg";
-      const stops = v.map((s) => `${ref(s.color)} ${num(s.position)}%`).join(", ");
+      const stopColor = (s) => {
+        const c = ref(s.color);
+        // `opacity` mezcla el color con transparente (color-mix) sin escribir un literal rgba.
+        return s.opacity === undefined ? c : `color-mix(in srgb, ${c} ${num(s.opacity)}%, transparent)`;
+      };
+      const stops = v.map((s) => `${stopColor(s)} ${num(s.position)}%`).join(", ");
       return [[name, `linear-gradient(${angle}, ${stops})`]];
     }
     case "typography":
