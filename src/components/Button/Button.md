@@ -36,7 +36,7 @@ The default slot holds the visible label.
 
 ## Tokens used
 
-`color.surface-button`, `color.on-button`, `color.border-accent`, `color.primary`, `radius.button`, `shadow.on-light`, `border.button`, `space.8`, `space.16`, `text.button`.
+`color.surface-button`, `color.on-button`, `color.border-accent`, `color.primary`, `color.focus-ring`, `focus.ring-width`, `focus.ring-offset`, `radius.button`, `shadow.on-light`, `border.button`, `space.8`, `space.16`, `text.button`.
 
 ## Accessibility
 
@@ -44,7 +44,7 @@ The default slot holds the visible label.
 - The icon is `aria-hidden`; the visible label is the accessible name unless `ariaLabel` is set.
 - When several buttons share a label, give each an `ariaLabel` that contains the visible text and names the target (WCAG 2.5.3, Label in Name).
 - Contrast: `color.on-button` on `color.surface-button` is 15.69:1. The accent border (`color.border-accent`) is 3.41:1 on white and 3.22:1 on off-white, above the 3:1 needed for a component boundary.
-- Focus uses the browser default; no custom focus style is defined.
+- Keyboard focus: a global `:focus-visible` rule draws a ring with `color.focus-ring`, `focus.ring-width` and `focus.ring-offset` (2px, 4px away from the edge). It stays visible against white, off-white, orange and the hero gradient (3.08:1 at worst, on the hero button).
 
 ## Examples
 
@@ -73,4 +73,5 @@ An in-page action without an icon:
 - Do use `as="a"` with an `href` for navigation. Don't render `as="a"` without `href`.
 - Do keep the visible text inside `ariaLabel`. Don't replace the label with an unrelated phrase.
 - Do choose `variant` for the look. Don't pass colours, classes or widths.
+- Do leave the focus ring alone. Don't remove it with `outline: none`.
 - Do place `light` on a surface where `color.on-button` text reads well. Don't use it as a tiny inline link.

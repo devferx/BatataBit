@@ -106,6 +106,8 @@
   --color-trend-up: var(--color-green-600);
   /* Colour of the price-decrease icon. 3.66:1 on white. Always give the icon a text alternative; never rely on colour alone. */
   --color-trend-down: var(--color-red-500);
+  /* Colour of the keyboard focus ring. Dark neutral: 3:1 or better on white, off-white, orange and the hero gradient, so one colour works on every surface that holds a focusable element. */
+  --color-focus-ring: var(--color-neutral-900);
   /* Font for headings and running text, including table titles; the default for all UI text. Data, numbers and small labels use font.data. */
   --font-body: var(--font-family-sans);
   /* Font for data, numbers and small labels: table cells, prices, notes, chips and badges. Headings and running text use font.body. */
@@ -122,6 +124,10 @@
   --border-divider: var(--border-width-1);
   /* Border width of outline buttons: 2px. */
   --border-button: var(--border-width-2);
+  /* Width of the keyboard focus ring: 2px. Use through the global :focus-visible rule; do not set outlines by hand. */
+  --focus-ring-width: var(--border-width-2);
+  /* Gap between an element and its keyboard focus ring: 4px, so the ring never touches the element's own edge or border. */
+  --focus-ring-offset: var(--space-4);
   /* Elevation shadow for elements on light surfaces: buttons, plan cards. Warm-tinted. */
   --shadow-on-light: var(--shadow-sombra-blanco);
   /* Elevation shadow for elements on dark surfaces: feature cards. Neutral black. */

@@ -65,6 +65,10 @@ There is one breakpoint, `breakpoint.tablet`: **768px**. Below it the page uses 
 - The paired tokens (`mobile` and `tablet` values) switch automatically: `tokens.css` reassigns the base variables inside one `@media (min-width: 768px)` block. Components never choose between them.
 - Custom properties cannot be used inside `@media`, so the value 768px is written literally in `tokens.css` (generated from the token) and in the few component and page stylesheets that need a tablet layout.
 
+## Keyboard focus
+
+Every focusable element (links, buttons, anything with `tabindex`) gets the same ring from one global `:focus-visible` rule: `color.focus-ring`, `focus.ring-width` (2px) and `focus.ring-offset` (4px). The dark ring keeps at least 3:1 against every surface that holds a focusable element: white, off-white, the orange footer and the hero gradient (3.08:1 at worst, on the hero button). Never remove it with `outline: none`; if a new surface needs a different ring, change the token.
+
 ## Source of truth
 
 - **Design decisions** (colours, type, spacing, radii, layout) follow Figma. Figma styles and variables use the same names as the tokens. When code and Figma disagree on a value, Figma wins.
@@ -81,4 +85,5 @@ There is one breakpoint, `breakpoint.tablet`: **768px**. Below it the page uses 
 - `npm run tokens:build` regenerates the CSS tokens.
 - `npm run docs:check` verifies that every component guide matches its code and that every token named in the docs exists.
 - `npx astro check` type-checks the project.
+- `node scripts/contrast/focus-ring.mjs <url>` tabs through every focusable element and measures its ring against the surroundings.
 - `node scripts/contrast/audit-page.mjs <url>` audits text and UI contrast on the rendered page; `node scripts/contrast/hero-contrast.mjs <url> --live` measures the hero over the real gradient.

@@ -26,6 +26,12 @@ html {
   font-family: var(--font-body);
 }
 
+/* Anillo de foco del teclado para todo elemento enfocable (enlaces, botones, [tabindex]). */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
 header {
   position: relative;
   display: flex;
