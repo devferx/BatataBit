@@ -247,60 +247,6 @@ main {
   scroll-snap-type: x proximity;
 }
 
-.plans-container--card {
-  position: relative;
-  scroll-snap-align: center;
-  width: 70%;
-  min-width: 190px;
-  max-width: 300px;
-  height: 250px;
-  margin: 50px 5px 0px;
-  padding: 0 15px;
-  background-color: var(--color-surface-card);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-on-light);
-}
-
-.plans-container--badge {
-  position: absolute;
-  top: -15px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-}
-
-.plan-card--title {
-  padding-top: 30px;
-  font-size: var(--text-body-sm-size);
-  font-weight: var(--text-body-sm-weight);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-text-strong);
-}
-
-.plan-card--price {
-  padding: 5px 0;
-  font-size: var(--text-price-size);
-  font-weight: var(--text-price-weight);
-  line-height: var(--text-price-line);
-  color: var(--color-text-strong);
-}
-
-.plan-card--price span {
-  font-size: var(--text-caption-size);
-  font-weight: var(--text-caption-weight);
-  vertical-align: text-top;
-}
-
-.plan-card--saving {
-  font-size: var(--text-caption-size);
-  color: var(--color-text-muted);
-}
-
-.plan-card--action {
-  margin-top: var(--space-20);
-}
-
 footer {
   display: flex;
   width: 100%;

@@ -4,3 +4,7 @@ import type { Props as FeatureCardProps } from "../components/FeatureCard/Featur
 import featuresJson from "./features.json";
 
 export const features = featuresJson as FeatureCardProps[];
+import type { Props as PlanCardProps } from "../components/PlanCard/PlanCard.astro";
+import plansJson from "./plans.json";
+
+export const plans = plansJson as PlanCardProps[];

@@ -1,0 +1,105 @@
+---
+import Badge, { type Props as BadgeProps } from "../Badge/Badge.astro";
+import Button from "../Button/Button.astro";
+
+export interface Props {
+  /** Plan name, rendered as an `<h3>` (place the card under an `<h2>` section title). */
+  title: string;
+  /** Price in dollars, shown large with a small "$" prefix. */
+  price: number;
+  /** Small supporting note under the price (what the plan includes or saves). */
+  note: string;
+  /**
+   * Optional highlight pinned to the top edge of the card.
+   * `tone` must be a solid tone (`primary` | `secondary`).
+   * @default undefined (no badge)
+   */
+  badge?: {
+    label: string;
+    tone: Extract<BadgeProps["tone"], "primary" | "secondary">;
+  };
+  /**
+   * Visible label of the call-to-action button (e.g. "Escoger este"). Its accessible name is
+   * built as "<ctaLabel> plan: <title>" so several identical buttons stay distinguishable.
+   */
+  ctaLabel: string;
+}
+
+const { title, price, note, badge, ctaLabel } = Astro.props;
+---
+
+<article class="plan-card">
+  {
+    badge && (
+      <div class="plan-card__badge">
+        <Badge tone={badge.tone} size="sm">
+          {badge.label}
+        </Badge>
+      </div>
+    )
+  }
+  <h3 class="plan-card__title">{title}</h3>
+  <p class="plan-card__price"><span>$</span> {price}</p>
+  <p class="plan-card__note">{note}</p>
+  <div class="plan-card__action">
+    <Button variant="outline" icon="arrow-right" ariaLabel={`${ctaLabel} plan: ${title}`}>
+      {ctaLabel}
+    </Button>
+  </div>
+</article>
+
+<style>
+  .plan-card {
+    position: relative;
+    scroll-snap-align: center;
+    width: 70%;
+    min-width: 190px;
+    max-width: 300px;
+    height: 250px;
+    margin: 50px 5px 0px;
+    padding: 0 15px;
+    background-color: var(--color-surface-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-on-light);
+  }
+
+  .plan-card__badge {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .plan-card__title {
+    padding-top: 30px;
+    font-size: var(--text-body-sm-size);
+    font-weight: var(--text-body-sm-weight);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-strong);
+  }
+
+  .plan-card__price {
+    padding: 5px 0;
+    font-size: var(--text-price-size);
+    font-weight: var(--text-price-weight);
+    line-height: var(--text-price-line);
+    color: var(--color-text-strong);
+  }
+
+  .plan-card__price span {
+    font-size: var(--text-caption-size);
+    font-weight: var(--text-caption-weight);
+    vertical-align: text-top;
+  }
+
+  .plan-card__note {
+    font-size: var(--text-caption-size);
+    color: var(--color-text-muted);
+  }
+
+  .plan-card__action {
+    margin-top: var(--space-20);
+  }
+</style>
