@@ -1,0 +1,6 @@
+Round A · worst run a-1 · 2 validator issue(s)
+
+src/components/FaqItem/FaqItem.astro:1:1  [missing-docs]  Component FaqItem has no guide.  found: FaqItem.astro
+    fix: Create src/components/FaqItem/FaqItem.md with the nine sections (Purpose, When to use, When NOT to use, Props, Variants, Tokens used, Accessibility, E
+src/components/FaqItem/FaqItem.astro:1:1  [missing-docs]  FaqItem is not listed in docs/components.md.  found: FaqItem
+    fix: Add a one-line entry (name, purpose, path to the guide) to docs/components.md.

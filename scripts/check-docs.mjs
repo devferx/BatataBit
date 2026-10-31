@@ -5,7 +5,13 @@
 //  4. docs/components.md lista cada componente con la ruta de su guía;
 //  5. los docs no contienen notas de proceso ni referencias a secciones reservadas.
 // Uso: node scripts/check-docs.mjs   (o npm run docs:check)
+// Opciones: --root <carpeta> comprueba otro árbol de trabajo; --only <Componente> comprueba solo ese componente.
 import { readFileSync, readdirSync, existsSync } from "node:fs";
+
+const cliArgs = process.argv.slice(2);
+const cliArg = (name) => { const i = cliArgs.indexOf(name); return i >= 0 ? cliArgs[i + 1] : undefined; };
+if (cliArg("--root")) process.chdir(cliArg("--root"));
+const only = cliArg("--only");
 
 const COMPONENTS_DIR = "src/components";
 const DOCS = ["docs/design-system.md", "docs/components.md"];
@@ -87,7 +93,7 @@ const docProps = (text) => {
   return names;
 };
 
-const components = readdirSync(COMPONENTS_DIR, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
+const components = only ? [only] : readdirSync(COMPONENTS_DIR, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
 const docTexts = {};
 
 for (const name of components) {
@@ -111,8 +117,8 @@ for (const name of components) {
 }
 
 for (const doc of DOCS) {
-  if (!existsSync(doc)) fail(`falta ${doc}`);
-  else docTexts[doc] = readFileSync(doc, "utf8");
+  if (!existsSync(doc)) { if (!only || doc === "docs/components.md") fail(`falta ${doc}`); }
+  else if (!only || doc === "docs/components.md") docTexts[doc] = readFileSync(doc, "utf8");
 }
 
 // ---- docs/components.md lista todos los componentes con su guía
@@ -125,6 +131,7 @@ for (const name of components) {
 // ---- tokens citados y texto prohibido
 const TOKEN_RE = /`((?:color|font|radius|space|shadow|gradient|border|layout|text|breakpoint)\.[A-Za-z0-9.-]*[A-Za-z0-9])`/g;
 for (const [doc, text] of Object.entries(docTexts)) {
+  if (only && doc.startsWith("docs/")) continue;
   const prose = text.replace(/```[\s\S]*?```/g, "");
   for (const m of prose.matchAll(TOKEN_RE)) if (!tokenPaths.has(m[1])) fail(`${doc}: el token "${m[1]}" no existe en tokens.json`);
   for (const bad of [/\bTODO\b/, /\bFIXME\b/, /\bPhase \d/i, /\bFase \d/i, /\bFAQ\b/i]) if (bad.test(text)) fail(`${doc}: contiene texto no permitido (${bad})`);

@@ -1,12 +1,14 @@
 // Ejecuta el validador sobre archivos o carpetas (por defecto, todo el código del sitio). Sale con 1 si hay problemas.
-// Uso: node mcp/src/validate-cli.ts [rutas...]
+// Uso: node mcp/src/validate-cli.ts [--json] [rutas...]   (con --json imprime los resultados y sale con 0)
 import { readdirSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { projectRoot } from "./lib/root.ts";
 import { validateFile } from "./lib/validate.ts";
 
 const DEFAULTS = ["src/pages", "src/layouts", "src/components", "src/styles/global.css"];
-const targets = process.argv.length > 2 ? process.argv.slice(2) : DEFAULTS;
+const json = process.argv.includes("--json");
+const argv = process.argv.slice(2).filter((a) => a !== "--json");
+const targets = argv.length ? argv : DEFAULTS;
 
 const collect = (p: string): string[] => {
   const abs = resolve(projectRoot, p);
@@ -15,13 +17,19 @@ const collect = (p: string): string[] => {
 };
 
 let total = 0;
+const all = [];
 for (const file of targets.flatMap(collect)) {
   const result = validateFile(file);
+  all.push(result);
   total += result.issueCount;
-  if (!result.ok) {
+  if (!result.ok && !json) {
     console.error(`${result.path}: ${result.issueCount} issue(s)`);
     for (const i of result.issues) console.error(`  ${i.line}:${i.column} [${i.rule}] ${i.message} Found: ${i.found}\n    -> ${i.suggestion}`);
   }
+}
+if (json) {
+  console.log(JSON.stringify(all));
+  process.exit(0);
 }
 if (total) {
   console.error(`ds:validate failed: ${total} issue(s)`);

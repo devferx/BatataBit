@@ -1,0 +1,1 @@
+Round B: no validator issues in any run.

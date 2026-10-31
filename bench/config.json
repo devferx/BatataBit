@@ -1,0 +1,26 @@
+{
+  "tag": "v7-ai-layer",
+  "benchDir": "../BatataBit-bench",
+  "model": "claude-sonnet-5-5",
+  "maxBudgetUsd": 8,
+  "timeoutMinutes": 40,
+  "runsPerRound": 3,
+  "rounds": {
+    "a": "Figma MCP only. No AGENTS.md, no docs, no component guides, no design-system MCP, no skill.",
+    "b": "AGENTS.md, CLAUDE.md, docs and component guides. No design-system MCP, no skill.",
+    "c": "Everything: AGENTS.md, docs, component guides, the batatabit-ds MCP server and the build-section-from-figma skill."
+  },
+  "removeEverywhere": ["AUDIT.md", "PHASE5-PROPOSAL.md"],
+  "allowedTools": [
+    "Bash(npm run *)",
+    "Bash(npx *)",
+    "Bash(node *)",
+    "Bash(curl *)",
+    "Bash(git status*)",
+    "Bash(git diff*)",
+    "Bash(git log*)",
+    "Bash(git add *)",
+    "mcp__plugin_figma_figma",
+    "mcp__batatabit-ds"
+  ]
+}
