@@ -30,10 +30,10 @@ header {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 100%;
   min-width: 320px;
-  height: 334px;
+  min-height: var(--layout-hero-min-height);
+  padding-top: var(--layout-hero-padding-top);
   text-align: center;
   background: var(--gradient-hero);
 }
@@ -41,7 +41,7 @@ header {
 header img {
   width: 150px;
   height: 24px;
-  margin-top: 60px;
+  margin-top: var(--space-8);
   align-self: center;
 }
 
@@ -49,17 +49,20 @@ header img {
   width: 90%;
   min-width: 288px;
   max-width: 900px;
-  height: 218px;
   margin-top: var(--space-40);
   text-align: center;
   align-self: center;
 }
 
+/* El CTA queda centrado sobre el borde inferior del hero. */
 .hero-cta {
   position: absolute;
-  left: calc(50% - 118px);
-  top: 270px;
-  margin-top: 35px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  transform: translateY(50%);
 }
 
 main {
@@ -175,9 +178,9 @@ footer section {
 }
 
 footer .left ul {
-  font-size: var(--text-body-sm-size);
-  font-weight: var(--text-body-sm-weight);
-  line-height: var(--text-body-sm-line);
+  font-size: var(--text-lead-size);
+  font-weight: var(--text-lead-weight);
+  line-height: var(--text-lead-line);
   list-style: none;
 }
 
@@ -190,16 +193,19 @@ footer .left ul {
   color: var(--color-on-primary);
 }
 
-@media (min-width: 930px) {
+/* 768px = breakpoint.tablet (las custom properties no se pueden usar en @media). */
+@media (min-width: 768px) {
   .main-tables-container {
     display: flex;
-    width: 930px;
+    width: 100%;
+    max-width: var(--layout-content-max-width);
     margin: 0 auto;
   }
   .product-cards--container {
     display: flex;
     flex-wrap: wrap;
-    width: 930px;
+    width: 100%;
+    max-width: var(--layout-content-max-width);
     margin: 0 auto;
   }
   .plans-container--slider {
