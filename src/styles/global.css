@@ -93,7 +93,7 @@ header img {
   width: 13px;
   height: 8px;
   margin-left: 10px;
-  background-image: url("/assets/icons/down-arrow.svg");
+  color: var(--color-surface-dark);
 }
 
 main {
@@ -228,17 +228,6 @@ main {
   width: 15px;
   height: 15px;
   margin-left: 10px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.currency-table--container--grid .icon.down {
-  background-image: url("/assets/icons/trending-down.svg");
-}
-
-.currency-table--container--grid .icon.up {
-  background-image: url("/assets/icons/trending-up.svg");
 }
 
 .currency-table--date {
@@ -322,25 +311,7 @@ main {
   width: 20px;
   height: 20px;
   margin-bottom: 10px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.product-detail--card .icon-card.clock {
-  background-image: url("/assets/icons/clock.svg");
-}
-
-.product-detail--card .icon-card.eye {
-  background-image: url("/assets/icons/eye.svg");
-}
-
-.product-detail--card .icon-card.dollar-sign {
-  background-image: url("/assets/icons/dollar-sign.svg");
-}
-
-.product-detail--card .icon-card.check-circle {
-  background-image: url("/assets/icons/check-circle.svg");
+  color: var(--color-primary);
 }
 
 .product--card-title {
@@ -494,10 +465,7 @@ main {
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-image: url("/assets/icons/orange-right-arrow.svg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  color: var(--color-primary);
   vertical-align: text-bottom;
 }
 

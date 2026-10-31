@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon/Icon.astro";
 ---
 
 <BaseLayout>
@@ -11,8 +12,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           Batabit te ayuda a navegar entre los diferentes precios y tendencias.
         </p>
         <a class="header--button" href="#plans"
-          >Conoce Nuestros Planes <span></span
-        ></a>
+          >Conoce Nuestros Planes <span><Icon name="arrow-down" /></span></a>
       </div>
     </header>
     <main>
@@ -32,18 +32,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <div class="currency-table--container--grid">
                 <div class="grid__top-left">Bitcoin</div>
                 <div class="grid__top-right">
-                  $ 1.96 <span class="icon down"></span>
+                  $ 1.96 <span class="icon"><Icon name="trending-down" size="sm" label="A la baja" /></span>
                 </div>
 
                 <div>Ethereum</div>
-                <div>$ 0.07<span class="icon up"></span></div>
+                <div>$ 0.07<span class="icon"><Icon name="trending-up" size="sm" label="Al alza" /></span></div>
 
                 <div>Ripple</div>
-                <div>$ 2.15 <span class="icon down"></span></div>
+                <div>$ 2.15 <span class="icon"><Icon name="trending-down" size="sm" label="A la baja" /></span></div>
 
                 <div class="grid__bottom-left">Stellar</div>
                 <div class="grid__bottom-right">
-                  $ 4.96 <span class="icon down"></span>
+                  $ 4.96 <span class="icon"><Icon name="trending-down" size="sm" label="A la baja" /></span>
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
         <section class="product-cards--container">
           <article class="product-detail--card">
-            <span class="icon-card clock"></span>
+            <span class="icon-card"><Icon name="clock" /></span>
             <p class="product--card-title">Tiempo real</p>
             <p class="product--card-body">
               Nuestro API toma información minuto a minuto sobre las tasas que
@@ -90,7 +90,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </p>
           </article>
           <article class="product-detail--card">
-            <span class="icon-card eye"></span>
+            <span class="icon-card"><Icon name="eye" /></span>
             <p class="product--card-title">No hay tasas escondidas</p>
             <p class="product--card-body">
               Ni en la compra o al momento de exit, Batabit siempre te muestra
@@ -98,7 +98,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </p>
           </article>
           <article class="product-detail--card">
-            <span class="icon-card dollar-sign"></span>
+            <span class="icon-card"><Icon name="dollar-sign" /></span>
             <p class="product--card-title">Compara monedas</p>
             <p class="product--card-body">
               No más rumores, con Babtabit sabrás el valor real de cada moneda
@@ -106,7 +106,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </p>
           </article>
           <article class="product-detail--card">
-            <span class="icon-card check-circle"></span>
+            <span class="icon-card"><Icon name="check-circle" /></span>
             <p class="product--card-title">Información confiable</p>
             <p class="product--card-body">
               Nuestras fuentes están 100% verificadas y continuamos auditando su
@@ -130,7 +130,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <h3 class="plan-card--title">Pago Mensual</h3>
               <p class="plan-card--price"><span>$</span> 19</p>
               <p class="plan-card--saving">*Acceso a servicios Pro</p>
-              <button class="plan-card--ca">Escoger este <span></span></button>
+              <button class="plan-card--ca">Escoger este <span><Icon name="arrow-right" /></span></button>
             </div>
           </article>
           <article class="plans-container--card">
@@ -141,7 +141,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <p class="plan-card--saving">
                 *Ahorras $129 comparado al plan mensual.
               </p>
-              <button class="plan-card--ca">Escoger este <span></span></button>
+              <button class="plan-card--ca">Escoger este <span><Icon name="arrow-right" /></span></button>
             </div>
           </article>
           <article class="plans-container--card">
@@ -151,7 +151,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <p class="plan-card--saving">
                 *Acceso a servicios Pro durante un dia
               </p>
-              <button class="plan-card--ca">Escoger este <span></span></button>
+              <button class="plan-card--ca">Escoger este <span><Icon name="arrow-right" /></span></button>
             </div>
           </article>
         </section>
