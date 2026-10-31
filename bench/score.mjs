@@ -291,7 +291,12 @@ for (const task of [...new Set(runs.map((r) => r.task))].sort()) {
   for (const round of [...new Set(runs.filter((r) => r.task === task).map((r) => r.round))]) {
     const rs = runs.filter((r) => r.task === task && r.round === round);
     const m = { runs: rs.length };
-    for (const k of NUM) m[k] = median(rs.map((r) => r[k]));
+    m.stats = {};
+    for (const k of NUM) {
+      const vals = rs.map((r) => r[k]).filter((v) => typeof v === "number" && Number.isFinite(v));
+      m[k] = median(vals);
+      m.stats[k] = vals.length ? { median: median(vals), min: Math.min(...vals), max: Math.max(...vals), n: vals.length } : null;
+    }
     for (const k of BOOL) { const vals = rs.map((r) => r[k]).filter((v) => typeof v === "boolean"); m[k] = vals.length ? `${vals.filter(Boolean).length}/${vals.length}` : null; }
     const rules = [...new Set(rs.flatMap((r) => Object.keys(r.issuesByRule ?? {})))].sort();
     m.issuesByRule = Object.fromEntries(rules.map((rule) => [rule, median(rs.map((r) => r.issuesByRule?.[rule] ?? 0))]));
