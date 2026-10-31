@@ -87,9 +87,9 @@
   --color-text-subtle: var(--color-neutral-300);
   /* Text/icons placed on color.primary or color.secondary fills (badges, footer links). Currently white to preserve the original look, but it fails WCAG AA (2.3:1 on orange, 3.0:1 on blue); intended to change to a dark neutral in a later, deliberate phase. */
   --color-on-primary: var(--color-neutral-0);
-  /* Positive-change indicator (price up). Currently consumed only by the trending-up SVG; becomes available to the Icon component in Phase 3. Always pair with a text/aria alternative; colour alone is not enough. */
+  /* Positive-change indicator (price up). Consumed by the Icon component (name 'trending-up'). Always pair with a text/aria alternative; colour alone is not enough. */
   --color-trend-up: var(--color-green-500);
-  /* Negative-change indicator (price down). Currently consumed only by the trending-down SVG. Always pair with a text/aria alternative. */
+  /* Negative-change indicator (price down). Consumed by the Icon component (name 'trending-down'). Always pair with a text/aria alternative. */
   --color-trend-down: var(--color-red-500);
   /* Default font for all UI text (set on the root). Use unless a rule explicitly calls for font.data. */
   --font-body: var(--font-family-sans);
