@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon/Icon.astro";
+import Badge from "../components/Badge/Badge.astro";
 ---
 
 <BaseLayout>
@@ -47,8 +48,8 @@ import Icon from "../components/Icon/Icon.astro";
                 </div>
               </div>
             </div>
-            <div class="currency-table--date __soft-orange">
-              <p><b>Actualizado</b>: 19 Julio 23:45</p>
+            <div class="currency-table--date">
+              <Badge tone="primary-soft"><strong>Actualizado</strong>: 19 Julio 23:45</Badge>
             </div>
           </div>
           <div class="main-currency-table">
@@ -68,8 +69,8 @@ import Icon from "../components/Icon/Icon.astro";
                 <div>$ 14.96</div>
               </div>
             </div>
-            <div class="currency-table--date __soft-blue">
-              <p><b>Actualizado</b>: 19 Julio 23:45</p>
+            <div class="currency-table--date">
+              <Badge tone="secondary-soft"><strong>Actualizado</strong>: 19 Julio 23:45</Badge>
             </div>
           </div>
         </section>
@@ -126,7 +127,7 @@ import Icon from "../components/Icon/Icon.astro";
         <section class="plans-container--slider">
           <article class="plans-container--card">
             <div class="plan-info-container">
-              <p class="recommended __bg-blue">Más vendido</p>
+              <div class="plans-container--badge"><Badge tone="secondary" size="sm">Más vendido</Badge></div>
               <h3 class="plan-card--title">Pago Mensual</h3>
               <p class="plan-card--price"><span>$</span> 19</p>
               <p class="plan-card--saving">*Acceso a servicios Pro</p>
@@ -134,7 +135,7 @@ import Icon from "../components/Icon/Icon.astro";
             </div>
           </article>
           <article class="plans-container--card">
-            <p class="recommended">Recomendado</p>
+            <div class="plans-container--badge"><Badge tone="primary" size="sm">Recomendado</Badge></div>
             <div class="plan-info-container">
               <h3 class="plan-card--title">Pago Anual</h3>
               <p class="plan-card--price"><span>$</span> 99</p>

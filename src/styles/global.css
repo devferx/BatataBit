@@ -136,7 +136,7 @@ main {
   color: var(--color-text-strong);
 }
 
-.main-exchange-container p {
+.main-exchange-container--title p {
   margin-bottom: 30px;
   font-size: var(--text-lead-tight-size);
   font-weight: var(--text-lead-tight-weight);
@@ -231,24 +231,7 @@ main {
 }
 
 .currency-table--date {
-  width: 190px;
-  height: 30px;
-  margin: 0 auto;
   margin-top: var(--space-16);
-  padding: var(--space-8);
-  background-color: var(--color-primary-soft);
-  border-radius: var(--radius-chip);
-}
-
-.__soft-blue {
-  background-color: var(--color-secondary-soft) !important;
-}
-
-.currency-table--date p {
-  font-size: var(--text-caption-size);
-  font-weight: var(--text-caption-weight);
-  line-height: var(--text-caption-line);
-  color: var(--color-text-on-soft);
 }
 
 .main-product-detail {
@@ -402,21 +385,13 @@ main {
   box-shadow: var(--shadow-on-light);
 }
 
-.recommended {
+.plans-container--badge {
   position: absolute;
-  width: 120px;
-  height: 31px;
-  padding: 6px;
   top: -15px;
-  left: calc(50% - 60px);
-  font-size: var(--text-caption-size);
-  background-color: var(--color-primary);
-  border-radius: var(--radius-chip);
-  color: var(--color-on-primary);
-}
-
-.__bg-blue {
-  background-color: var(--color-secondary);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .plan-card--title {

@@ -1,0 +1,63 @@
+---
+export interface Props {
+  /**
+   * Colour scheme. `primary` / `secondary` are solid fills with light text (promotional badges);
+   * `primary-soft` / `secondary-soft` are tinted fills with dark text (informational chips).
+   */
+  tone: "primary" | "secondary" | "primary-soft" | "secondary-soft";
+  /**
+   * `sm` = 120×31 badge that labels a card ("Recomendado"); `md` = 190×30 chip with
+   * light 12/15 text (the "Actualizado" date chip).
+   * @default "md"
+   */
+  size?: "sm" | "md";
+}
+
+const { tone, size = "md" } = Astro.props;
+---
+
+<p class:list={["badge", `badge--${size}`, `badge--${tone}`]}><slot /></p>
+
+<style>
+  .badge {
+    text-align: center;
+    border-radius: var(--radius-chip);
+  }
+
+  .badge--sm {
+    width: 120px;
+    height: 31px;
+    padding: 6px;
+    font-size: var(--text-caption-size);
+  }
+
+  .badge--md {
+    margin-inline: auto;
+    width: 190px;
+    height: 30px;
+    padding: var(--space-8);
+    font-size: var(--text-caption-size);
+    font-weight: var(--text-caption-weight);
+    line-height: var(--text-caption-line);
+  }
+
+  .badge--primary {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  .badge--secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-on-primary);
+  }
+
+  .badge--primary-soft {
+    background-color: var(--color-primary-soft);
+    color: var(--color-text-on-soft);
+  }
+
+  .badge--secondary-soft {
+    background-color: var(--color-secondary-soft);
+    color: var(--color-text-on-soft);
+  }
+</style>
