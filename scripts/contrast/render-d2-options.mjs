@@ -1,11 +1,11 @@
 // Renderiza el hero (375 y 1024) con las tres opciones de D2 y la tarjeta de plan con radio 15 vs 8 (D4).
 // No modifica archivos: inyecta CSS en la página construida.
-// Uso: node scripts/contrast/render-d2-options.mjs <url> [carpeta=tests/visual/d2-options]
+// Uso: node scripts/contrast/render-d2-options.mjs <url> [carpeta=evidence/tests/visual/d2-options]
 import { chromium } from "@playwright/test";
 import { mkdirSync, readFileSync } from "node:fs";
 import { OPTIONS, gradientCss, leadColorCss, layoutCss } from "./hero-preview.mjs";
 
-const [url, outDir = "tests/visual/d2-options"] = process.argv.slice(2);
+const [url, outDir = "evidence/tests/visual/d2-options"] = process.argv.slice(2);
 if (!url) {
   console.error("Uso: node scripts/contrast/render-d2-options.mjs <url> [carpeta]");
   process.exit(1);

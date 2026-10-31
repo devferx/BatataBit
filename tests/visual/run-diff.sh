@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Build + preview + captura 375/1024 + comparación pixel a pixel contra una carpeta de referencia.
-# Uso: bash tests/visual/run-diff.sh [referencia=tests/visual/v2-tokens] [salida=/tmp/visual-out]
+# Uso: bash tests/visual/run-diff.sh [referencia=evidence/tests/visual/v2-tokens] [salida=/tmp/visual-out]
 set -u
 cd "$(dirname "$0")/../.."
-REF="${1:-tests/visual/v2-tokens}"
+REF="${1:-evidence/tests/visual/v2-tokens}"
 OUT="${2:-${TMPDIR:-/tmp}/visual-out}"
 PORT=4410
 npm run build >/dev/null 2>&1 || { echo "BUILD FAILED"; npm run build 2>&1 | tail -20; exit 2; }

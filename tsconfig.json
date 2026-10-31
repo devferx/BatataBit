@@ -9,7 +9,6 @@
     "node_modules",
     "mcp",
     "tests/fixtures",
-    "bench",
-    "demo"
+    "evidence"
   ]
 }

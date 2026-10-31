@@ -1,6 +1,0 @@
-A T2 · worst run a-t2-1 · 2 validator issue(s)
-
-src/components/TestimonialCard/TestimonialCard.astro:1:1  [missing-docs]  Component TestimonialCard has no guide.  found: TestimonialCard.astro
-    fix: Create src/components/TestimonialCard/TestimonialCard.md with the nine sections (Purpose, When to use, When NOT to use, Props, Variants, Tokens used, 
-src/components/TestimonialCard/TestimonialCard.astro:1:1  [missing-docs]  TestimonialCard is not listed in docs/components.md.  found: TestimonialCard
-    fix: Add a one-line entry (name, purpose, path to the guide) to docs/components.md.
