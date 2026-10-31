@@ -496,10 +496,20 @@ Everything in §7 was applied in code. Decisions made while doing it:
 
 ---
 
-## 9. Phase 5c record (layout parity with Figma "Tablet ≥768" at 834px; not tagged yet)
+## 9. Phase 5c record (layout parity with Figma "Tablet ≥768" at 834px; tag `v5-parity`)
 
-Applied in code, tokens only: hero logo at 104px from the top (Figma 103) through `layout.hero-padding-top` (64px at tablet) and the new `layout.hero-logo-margin-top` (40px at tablet); the two tables side by side, centred, 24px apart and fitted to their content; table chips left-aligned under the table; plan cards as three equal columns inside a 64px margin with 16px gaps (224.7px wide against Figma's 223px); footer content on the 466px title measure (links at its left edge, logo at its right edge); the batata icon removed (it exists in no Figma frame except the logos).
+Applied in code, tokens only:
+- **Hero:** logo 174×27.6px at x=330, y=104 (Figma 174×27.7 at 330, 103; new tokens `layout.hero-padding-top` 64px, `layout.hero-logo-margin-top` 40px and `layout.hero-logo-width` at tablet); the h1 starts at y=171.6 (identical to Figma); the button stays centred on the bottom edge.
+- **Tables:** side by side, centred, 24px apart (Figma 22px), fitted to their content, with 39px rows (line height plus 20px) and a 159px grid (identical to Figma); chips left-aligned under each table.
+- **Feature cards:** inside the 64px margin, two per row, 345px wide at x=64 and 425 (identical to Figma), 16px gaps.
+- **Plan cards:** three equal columns inside the 64px margin, 224.7px wide with 16px gaps (Figma 223px, 18px).
+- **Footer:** content on the 466px title measure, height 271px (new token `layout.footer-min-height`; 150px on mobile as in Figma).
+- **Batata icon:** removed with its asset (it exists in no Figma frame except the logos).
 
-Waiting on decisions: the Dev Mode CSS of node `359:484` (gradient stop), approval of the image scrim before it is added to Figma, and Figma's hero heading-to-lead gap (32px in Figma against the 24px of decision D7).
+Figma changes in this pass: the hero heading-to-lead gap is 24px in every frame (decision D7; the tablet, iMac and MacBook frames had 32px); the approved image scrim was added as the paint style `gradient/image-scrim` (#201E1C at 55% fading to transparent at 75% of the height) and as an "Image scrim" layer above the photo in the tablet, iPhone 8 - 1 and iPhone SE frames. The style's stops carry their own alpha, so they are not bound to the colour variable (binding replaces the alpha).
 
-Remaining differences against Figma at 834px: table column widths (Figma 100/106px, not on the scale; code hugs the content: 189.7 and 171.8px against 218 and 208px) and row heights (Figma 39px; code rows stretch to a 250px grid); feature cards (Figma 345px wide inside the 64px margin; code 400px with a 16px margin); footer height (Figma 271px; code 150px); hero logo size (Figma 174×27.7px; code 150×24px, so the h1 starts 3.6px higher); heading-to-lead gap in the hero (Figma 32px; code 24px).
+Decisions still open:
+- **Gradient stop:** `gradient.hero` stays at 16.69% (Figma's raw first stop is 11.19%). The Dev Mode CSS of node `359:484` was not provided. Hero lead contrast stays 3.03:1 at worst, the documented exception.
+- **Image heading in the Figma tablet frame:** it sits 43% down the photo (about 17% on the phone frames and near the top in code), where the scrim is weaker. With the heading hidden the background measures 2.43:1 against white at the worst pixel, below the 3:1 that large text needs. On the phone frames it is 5.21:1. Options: move the tablet heading up like the phone frames and code, or strengthen the scrim.
+
+Remaining differences against Figma at 834px: table column widths (Figma 100/106px, off the scale; code hugs the content: 189.7 and 171.8px against 218 and 208px, so the tables span 224 to 610px against 202 to 650px); footer logo (Figma's group is about 106px wide with a 14px "® Batatabit 2020" line; code shows the 64px logo image); the FAQ section (reserved for the demo).
