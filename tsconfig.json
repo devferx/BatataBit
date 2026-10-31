@@ -8,6 +8,8 @@
     "dist",
     "node_modules",
     "mcp",
-    "tests/fixtures"
+    "tests/fixtures",
+    "bench",
+    "demo"
   ]
 }

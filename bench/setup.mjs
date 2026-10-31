@@ -5,16 +5,17 @@
 // Son clones locales independientes y no `git worktree`: Claude Code asocia un worktree al repositorio principal
 // y carga desde él las skills del proyecto (y su carpeta de memoria), con lo que la ronda A vería la skill de la
 // ronda C. Un clon independiente es un proyecto distinto y no hereda nada.
-// Uso: node bench/setup.mjs [--runs 3] [--rounds r0,a,b,c] [--tasks t1,t2]   (recrea todo desde cero)
+// Uso: node bench/setup.mjs [--runs 3] [--rounds r0,a,b,c] [--tasks t1,t2] [--install]   (recrea todo desde cero)
 import { execFileSync } from "node:child_process";
-import { cpSync, existsSync, mkdirSync, readdirSync, rmSync, symlinkSync, writeFileSync, readFileSync, statSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, rmSync, symlinkSync, writeFileSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { benchDir, cellId, config, git, manifestPath, parseArgs, repoRoot } from "./lib/common.mjs";
 
 const args = parseArgs(process.argv.slice(2));
 const runs = Number(args.runs ?? config.runsPerCell);
-const rounds = String(args.rounds ?? Object.keys(config.rounds).join(",")).split(",");
-const tasks = String(args.tasks ?? Object.keys(config.tasks).join(",")).split(",");
+// por defecto solo las rondas y tareas del benchmark; las de la demo (demo: true) se piden con --rounds / --tasks
+const rounds = String(args.rounds ?? Object.keys(config.rounds).filter((r) => !config.rounds[r].demo).join(",")).split(",");
+const tasks = String(args.tasks ?? Object.keys(config.tasks).filter((t) => !config.tasks[t].demo).join(",")).split(",");
 mkdirSync(benchDir, { recursive: true });
 
 // ---- qué quita cada ronda (sobre el estado de la etiqueta)
@@ -56,8 +57,8 @@ for (const round of rounds) for (const task of tasks) for (let run = 1; run <= r
   if (existsSync(dir)) rmSync(dir, { recursive: true, force: true });
   execFileSync("git", ["clone", "-q", "--local", "--no-hardlinks", repoRoot, dir]);
   git(dir, "checkout", "-q", "--detach", tag);
-  for (const f of config.removeEverywhere) rm(dir, f);   // historial del proyecto con pistas sobre el sistema de diseño
-  apply[round](dir);
+  for (const f of [...config.removeEverywhere, ...(config.rounds[round].remove ?? [])]) rm(dir, f);   // historial del proyecto con pistas sobre el sistema de diseño
+  (apply[round] ?? (() => {}))(dir);   // las rondas de la demo no quitan nada más
   // sin historial: el agente no puede leer etiquetas ni commits de otras rondas
   rm(dir, ".git");
   git(dir, "init", "-q");
@@ -65,7 +66,8 @@ for (const round of rounds) for (const task of tasks) for (let run = 1; run <= r
   git(dir, "-c", "user.name=bench", "-c", "user.email=bench@local", "commit", "-q", "-m", `bench setup: ${round} ${task}`);
   const baseSha = git(dir, "rev-parse", "HEAD");
   // dependencias compartidas (después del commit: un enlace simbólico no lo ignora node_modules/ de .gitignore)
-  symlinkSync(join(repoRoot, "node_modules"), join(dir, "node_modules"), "dir");
+  if (args.install) execFileSync("npm", ["install", "--no-audit", "--no-fund", "--loglevel=error"], { cwd: dir, stdio: "inherit" });   // dependencias propias en lugar de las compartidas
+  else symlinkSync(join(repoRoot, "node_modules"), join(dir, "node_modules"), "dir");
   manifest.push({ id, round, task, run, dir, baseSha, tag, kind: "clone", createdAt: new Date().toISOString() });
   console.log(`${id}: ${dir} @ ${baseSha.slice(0, 8)} (${tag})`);
 }

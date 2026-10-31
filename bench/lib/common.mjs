@@ -8,7 +8,7 @@ export const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..", "
 export const config = JSON.parse(readFileSync(join(repoRoot, "bench/config.json"), "utf8"));
 export const benchDir = resolve(repoRoot, process.env.BENCH_DIR ?? config.benchDir);
 export const manifestPath = join(benchDir, "manifest.json");
-export const resultsDir = join(repoRoot, "bench/results");
+export const resultsDir = resolve(repoRoot, process.env.BENCH_RESULTS ?? "bench/results");
 
 export const cellId = (round, task, run) => `${round}-${task}-${run}`;
 

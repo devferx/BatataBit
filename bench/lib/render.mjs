@@ -31,6 +31,7 @@ const PLAN_CARD_SELECTOR = ".plan-card, .plans-container--card";
 /**
  * Inspecciona la página a un ancho y hace capturas.
  * Tarea t1 (FAQ): localiza la FAQ, comprueba posición, preguntas, interacción y desbordes, y recorta la captura.
+ * Tarea t3 (login): comprueba el formulario (campos, etiquetas, tipos, autocomplete, botón real) y captura la página entera.
  * Tarea t2 (testimonios): localiza lo que el agente añadió entre los planes y el footer, cuenta los testimonios,
  * mide si usa colores y tipografías que ya existen en el resto de la página y recorta la sección.
  */
@@ -40,7 +41,7 @@ export async function inspect(url, width, { task = "t1", fullPath, faqCrop, regi
     const page = await (await browser.newContext({ viewport: { width, height: 900 }, deviceScaleFactor: 1, reducedMotion: "reduce" })).newPage();
     await page.goto(url, { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
-    const info = task === "t1" ? await inspectFaq(page) : await inspectTestimonials(page);
+    const info = task === "t1" ? await inspectFaq(page) : task === "t3" ? await inspectLogin(page) : await inspectTestimonials(page);
 
     // interacción (solo FAQ): abrir la primera pregunta
     let toggleWorks = false;
@@ -161,4 +162,43 @@ function inspectTestimonials(page) {
     out.offFonts = regionFonts.filter((f) => !restFonts.has(f)).length;
     return out;
   }, PLAN_CARD_SELECTOR);
+}
+
+function inspectLogin(page) {
+  return page.evaluate(() => {
+    const out = { scrollWidth: document.documentElement.scrollWidth, innerWidth: window.innerWidth };
+    const pw = document.querySelector("input[type=password]");
+    out.loginFound = !!pw;
+    if (!pw) return out;
+    const form = pw.closest("form");
+    const scope = form ?? document;
+    const fields = [...scope.querySelectorAll("input")].filter((i) => !["hidden", "submit", "button", "checkbox", "radio"].includes(i.type));
+    const email = fields.find((i) => i.type === "email") ?? fields.find((i) => /mail|user|correo/i.test(`${i.name}${i.id}${i.getAttribute("autocomplete") ?? ""}`)) ?? fields.find((i) => i !== pw);
+    const labelled = (i) => !!i && ([...(i.labels ?? [])].some((l) => l.textContent.trim()) || !!i.getAttribute("aria-label")?.trim() || !!(i.getAttribute("aria-labelledby") && document.getElementById(i.getAttribute("aria-labelledby"))?.textContent.trim()));
+    const visibleLabel = (i) => !!i && [...(i.labels ?? [])].some((l) => l.textContent.trim() && l.getBoundingClientRect().height > 0 && getComputedStyle(l).visibility !== "hidden");
+    out.formPresent = !!form;
+    out.fieldCount = fields.length;
+    out.emailType = email?.type ?? null;
+    out.emailTypeOk = email?.type === "email";
+    out.emailAutocompleteOk = /^(email|username)$/.test(email?.getAttribute("autocomplete") ?? "");
+    out.passwordAutocompleteOk = pw.getAttribute("autocomplete") === "current-password";
+    out.labelsOk = labelled(email) && labelled(pw);
+    out.visibleLabelsOk = visibleLabel(email) && visibleLabel(pw);
+    out.requiredOk = !!(email?.required && pw.required);
+    const btn = [...document.querySelectorAll("button, input[type=submit]")].find((b) => /ingresar/i.test(b.tagName === "INPUT" ? b.value : b.textContent));
+    out.submitIsRealButton = !!btn && (btn.tagName === "BUTTON" || btn.tagName === "INPUT") && btn.type === "submit" && !!btn.closest("form");
+    out.submitLabelExact = !!btn && (btn.tagName === "INPUT" ? btn.value : btn.textContent).replace(/\s+/g, " ").trim() === "Ingresar";
+    const link = [...document.querySelectorAll("a")].find((a) => /olvidaste/i.test(a.textContent));
+    out.forgotLinkOk = !!link && !!link.getAttribute("href")?.trim() && /¿Olvidaste tu contraseña\?/.test(link.textContent);
+    out.h1Count = document.querySelectorAll("h1").length;
+    // ¿se ve de verdad? el elemento en el centro de cada pieza debe ser la propia pieza (no algo que la tapa)
+    const unobstructed = (e) => { if (!e) return false; e.scrollIntoView({ block: "center", inline: "center" }); const r = e.getBoundingClientRect(); const t = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return !!t && (e === t || e.contains(t) || t.contains(e)); };
+    out.h1Unobstructed = unobstructed(document.querySelector("h1"));
+    out.controlsUnobstructed = [email, pw, btn, link].every(unobstructed);
+    window.scrollTo(0, 0);
+    const heights = [email, pw, btn, link].filter(Boolean).map((e) => e.getBoundingClientRect().height);
+    out.minTargetHeight = heights.length ? Math.round(Math.min(...heights)) : null;
+    out.regionFound = true;
+    return out;
+  });
 }

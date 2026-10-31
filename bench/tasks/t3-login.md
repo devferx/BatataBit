@@ -1,0 +1,1 @@
+Create a login page at /login with email and password fields, a "¿Olvidaste tu contraseña?" link, and a submit button labeled "Ingresar". It must match the rest of the site and work on mobile and tablet.

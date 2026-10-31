@@ -7,7 +7,6 @@ import { spawn, spawnSync } from "node:child_process";
 import { execFileSync } from "node:child_process";
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { chromium } from "@playwright/test";
 import { benchDir, config, git, median, parseArgs, readManifest, repoRoot, resultsDir } from "./lib/common.mjs";
 import { crop as cropPng, readPng, visualDifference } from "./lib/images.mjs";
 import { inspect, serveDist } from "./lib/render.mjs";
@@ -167,7 +166,8 @@ async function scoreRun(run, port) {
 
   // ---- validador: la copia de referencia de v7 (catálogo, tokens y docs) con los archivos del agente encima,
   // y solo cuentan los problemas de las líneas que el agente añadió. Igual en todas las rondas, también en r0.
-  const codeFiles = changed.filter((f) => /\.(astro|css)$/.test(f));
+  // tokens.css es un archivo generado que define los tokens semánticos como alias de los primitivos: ds:validate tampoco lo recorre
+  const codeFiles = changed.filter((f) => /\.(astro|css)$/.test(f) && f !== "src/styles/tokens.css");
   const overlay = join(benchDir, "overlays", run.id);
   rmSync(overlay, { recursive: true, force: true });
   cpSync(referenceRoot(), overlay, { recursive: true });
@@ -236,21 +236,26 @@ async function scoreRun(run, port) {
   const server = await serveDist(join(dir, "dist"), port);
   const url = `http://localhost:${port}/`;
   try {
-    const a = await auditPage(url);
+    const pageUrl = task === "t3" ? `${url}login/` : url;   // t3 se evalúa en /login
+    const a = await auditPage(pageUrl);
     const baseFails = new Set(base.contrastFails ?? []);
     rec.contrastFailures = a.contrastFails ? a.contrastFails.filter((f) => !baseFails.has(f)).length : null;   // null = el script no produjo resultado
     rec.contrastFailuresTotal = a.contrastFails?.length ?? null;
     rec.contrastSummary = a.contrastSummary;
-    rec.focusRingFailures = a.focusFailing === null || base.focusFailing === null ? null : Math.max(0, a.focusFailing - base.focusFailing);
+    // en /login no hay estado de partida: el foco se cuenta en términos absolutos
+    rec.focusRingFailures = a.focusFailing === null ? null : task === "t3" ? a.focusFailing : base.focusFailing === null ? null : Math.max(0, a.focusFailing - base.focusFailing);
     rec.focusSummary = a.focusSummary;
     const screens = join(resultsDir, "raw", run.id, "screens");
     mkdirSync(screens, { recursive: true });
     const refPrefix = run.round === "r0" ? "figma-r0-faq" : "figma-faq";
     for (const width of [834, 375]) {
       const faqCrop = { headingTopInCrop: ref.faq[width].headingTopInCrop, height: ref.faq[width].crop.height, out: join(screens, `faq-${width}.png`) };
-      const info = await inspect(url, width, { task, fullPath: join(screens, `full-${width}.png`), faqCrop, regionPath: join(screens, `region-${width}.png`) });
+      const info = await inspect(pageUrl, width, { task, fullPath: join(screens, `full-${width}.png`), faqCrop, regionPath: join(screens, `region-${width}.png`) });
       rec[`noOverflow${width}`] = !info.overflow;
-      if (task === "t1") {
+      if (task === "t3") {
+        rec[`login${width}`] = Object.fromEntries(Object.entries(info).filter(([k]) => !["scrollWidth", "innerWidth", "faqPath", "regionPath"].includes(k)));
+        if (width === 834) Object.assign(rec, { loginFound: info.loginFound, labelsOk: info.labelsOk, visibleLabelsOk: info.visibleLabelsOk, emailTypeOk: info.emailTypeOk, emailAutocompleteOk: info.emailAutocompleteOk, passwordAutocompleteOk: info.passwordAutocompleteOk, submitIsRealButton: info.submitIsRealButton, submitLabelExact: info.submitLabelExact, forgotLinkOk: info.forgotLinkOk, requiredOk: info.requiredOk, h1Unobstructed: info.h1Unobstructed, controlsUnobstructed: info.controlsUnobstructed, h1Count: info.h1Count, minTargetHeight: info.minTargetHeight });
+      } else if (task === "t1") {
         rec[`faq${width}`] = { found: info.headingFound, tag: info.headingTag, questions: info.questionsFound, interactive: info.toggleWorks, overflow: info.overflow, details: info.details ?? 0, ariaExpanded: info.ariaExpanded ?? 0 };
         if (width === 834) { rec.faqFound = info.headingFound; rec.positionCorrect = !!info.positionCorrect; rec.questionsFound = info.questionsFound; rec.interactive = info.toggleWorks; }
         if (info.faqPath) {
@@ -263,7 +268,7 @@ async function scoreRun(run, port) {
         else { rec.offPaletteColors375 = info.offPaletteColors ?? null; }
       }
     }
-    rec.featureWorksBothWidths = task === "t1"
+    rec.featureWorksBothWidths = task === "t3" ? !!(rec.login834?.loginFound && rec.login375?.loginFound && rec.noOverflow834 && rec.noOverflow375) : task === "t1"
       ? !!(rec.faq834?.found && rec.faq375?.found && rec.noOverflow834 && rec.noOverflow375)
       : !!(rec.region834?.found && rec.region375?.found && rec.noOverflow834 && rec.noOverflow375);
   } finally {
@@ -284,7 +289,7 @@ for (const run of manifest) {
 
 // ---- medianas por tarea y ronda
 const NUM = ["issueCount", "rawValueIssues", "componentsReused", "componentUses", "rawHtmlIssues", "reuseRatio", "newComponents", "newComponentsDocumented", "newComponentsDocsPass", "contrastFailures", "focusRingFailures", "astroErrors", "astroWarnings", "astroHints", "questionsFound", "visualDiff834", "visualDiff375", "testimonialItems", "offPaletteColors", "offFonts", "durationSec", "totalTokens", "costUsd", "numTurns", "figmaCalls", "batatabitCalls", "validateFileCalls", "docsRead", "permissionDenials"];
-const BOOL = ["ran", "agentFinished", "buildOk", "faqFound", "testimonialsFound", "positionCorrect", "interactive", "noOverflow834", "noOverflow375", "featureWorksBothWidths", "figmaAvailable", "skillUsed"];
+const BOOL = ["h1Unobstructed", "controlsUnobstructed", "loginFound", "labelsOk", "visibleLabelsOk", "emailTypeOk", "emailAutocompleteOk", "passwordAutocompleteOk", "submitIsRealButton", "submitLabelExact", "forgotLinkOk", "requiredOk", "ran", "agentFinished", "buildOk", "faqFound", "testimonialsFound", "positionCorrect", "interactive", "noOverflow834", "noOverflow375", "featureWorksBothWidths", "figmaAvailable", "skillUsed"];
 const medians = {};
 for (const task of [...new Set(runs.map((r) => r.task))].sort()) {
   medians[task] = {};
@@ -307,5 +312,5 @@ for (const task of [...new Set(runs.map((r) => r.task))].sort()) {
 const out = { generatedAt: new Date().toISOString(), model: config.model, rounds: config.rounds, tasks: config.tasks, runs, medians };
 writeFileSync(join(resultsDir, "results.json"), JSON.stringify(out, null, 2) + "\n");
 console.log(`results.json written: ${runs.length} runs`);
-await report(out);
+if (!process.env.BENCH_NO_REPORT) await report(out);
 console.log("summary.md, screenshots/ and excerpts/ written");
