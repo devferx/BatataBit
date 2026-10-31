@@ -2,5 +2,5 @@ node_modules/
 dist/
 .astro/
 test-results/
-bench/results/raw/
-bench/demo-results/
+# Local-only evidence (benchmark, demos, metrics, visual references); not part of the product
+evidence/

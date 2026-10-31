@@ -1,8 +1,0 @@
-{
-  "file": "https://www.figma.com/design/LjxBqsWv8fhgPgFNWP5nJP/BataBit",
-  "faq": {
-    "834": { "frame": "Tablet ≥768 (359:319)", "headingNode": "430:222", "crop": { "y": 2950, "height": 396 }, "headingTopInCrop": 40 },
-    "375": { "frame": "iPhone 8 - 1 (359:317)", "headingNode": "430:190", "crop": { "y": 2888, "height": 320 }, "headingTopInCrop": 40 }
-  },
-  "note": "Crops are anchored 40px above the FAQ heading and end 40px below the last question row. The FAQ is not a single Figma node: it is the heading and four question rows with chevrons that sit loose in the frame."
-}

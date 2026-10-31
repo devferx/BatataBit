@@ -4,7 +4,7 @@
 // Criterio oficial de pares: se excluye la regla raíz `html { font-size: 62.5% }` (baseline = 11).
 // Si existe tokens.css se usa para resolver var() antes de comparar pares font-size/line-height.
 // Acepta .css y .astro (de los .astro se miden solo los bloques <style>).
-// Uso: node scripts/metrics.mjs [--out metrics/baseline.json] [--tokens src/styles/tokens.css]
+// Uso: node scripts/metrics.mjs [--out evidence/metrics/baseline.json] [--tokens src/styles/tokens.css]
 //        [--components src/components] [--page src/pages/index.astro] [archivo.css|archivo.astro ...]
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
 import { dirname } from "node:path";

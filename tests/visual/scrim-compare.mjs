@@ -1,9 +1,9 @@
 // Captura la sección de la imagen sin y con el scrim (gradient.image-scrim) a 375 y 834px y arma una hoja comparativa.
-// Uso: node tests/visual/scrim-compare.mjs <url> [carpeta=tests/visual/scrim]
+// Uso: node tests/visual/scrim-compare.mjs <url> [carpeta=evidence/tests/visual/scrim]
 import { chromium } from "@playwright/test";
 import { mkdirSync, readFileSync } from "node:fs";
 
-const [url, outDir = "tests/visual/scrim"] = process.argv.slice(2);
+const [url, outDir = "evidence/tests/visual/scrim"] = process.argv.slice(2);
 mkdirSync(outDir, { recursive: true });
 const browser = await chromium.launch();
 const files = [];
