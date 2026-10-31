@@ -199,6 +199,37 @@ const titleId = `currency-table-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-"
   }
 
   .currency-table__updated {
+    display: flex;
+    justify-content: center;
     margin-top: var(--space-16);
+  }
+
+  /* 768px = breakpoint.tablet. La tabla se ajusta a su contenido, con el título y el chip alineados a la izquierda. */
+  @media (min-width: 768px) {
+    .currency-table {
+      width: auto;
+      min-width: 0;
+      max-width: none;
+      margin: 0 0 var(--space-32);
+    }
+
+    .currency-table__title {
+      width: auto;
+      min-width: 0;
+      max-width: none;
+      margin: 0 0 var(--space-4);
+    }
+
+    .currency-table__grid {
+      grid-template-columns: auto auto;
+      width: auto;
+      min-width: 0;
+      max-width: none;
+      margin: 0;
+    }
+
+    .currency-table__updated {
+      justify-content: flex-start;
+    }
   }
 </style>

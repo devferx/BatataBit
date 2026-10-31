@@ -493,3 +493,13 @@ Everything in §7 was applied in code. Decisions made while doing it:
 - **Table title:** same width as the grid, left-aligned, with the accent bar underneath.
 - **Plan card:** the note reserves two lines so the buttons line up across cards; the "$" no longer has a space before the price (as in Figma).
 - **`astro check`:** the Icon typing error present since Phase 3 is fixed; earlier checks filtered the singular "1 error" line out.
+
+---
+
+## 9. Phase 5c record (layout parity with Figma "Tablet ≥768" at 834px; not tagged yet)
+
+Applied in code, tokens only: hero logo at 104px from the top (Figma 103) through `layout.hero-padding-top` (64px at tablet) and the new `layout.hero-logo-margin-top` (40px at tablet); the two tables side by side, centred, 24px apart and fitted to their content; table chips left-aligned under the table; plan cards as three equal columns inside a 64px margin with 16px gaps (224.7px wide against Figma's 223px); footer content on the 466px title measure (links at its left edge, logo at its right edge); the batata icon removed (it exists in no Figma frame except the logos).
+
+Waiting on decisions: the Dev Mode CSS of node `359:484` (gradient stop), approval of the image scrim before it is added to Figma, and Figma's hero heading-to-lead gap (32px in Figma against the 24px of decision D7).
+
+Remaining differences against Figma at 834px: table column widths (Figma 100/106px, not on the scale; code hugs the content: 189.7 and 171.8px against 218 and 208px) and row heights (Figma 39px; code rows stretch to a 250px grid); feature cards (Figma 345px wide inside the 64px margin; code 400px with a 16px margin); footer height (Figma 271px; code 150px); hero logo size (Figma 174×27.7px; code 150×24px, so the h1 starts 3.6px higher); heading-to-lead gap in the hero (Figma 32px; code 24px).

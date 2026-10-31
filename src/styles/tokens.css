@@ -126,10 +126,14 @@
   --gradient-hero: linear-gradient(207.8deg, var(--color-surface-dark) 16.69%, var(--color-primary) 100%);
   /* Dark scrim over the top of a photo that carries white text (the 'Conócelo hoy.' heading): 55% surface-dark fading to transparent at 75% of the height. Keeps white text at 3:1 or better on the photo; add it to any photo section with text on top. */
   --gradient-image-scrim: linear-gradient(180deg, color-mix(in srgb, var(--color-surface-dark) 55%, transparent) 0%, transparent 75%);
-  /* Space above the hero logo: 48px on mobile, 80px from the tablet breakpoint. */
+  /* Space above the hero logo block: 48px on mobile, 64px from the tablet breakpoint. With layout.hero-logo-margin-top the logo sits 56px (mobile) and 104px (tablet) from the top of the hero. */
   --layout-hero-padding-top: var(--space-48);
-  /* Space above the hero logo: 48px on mobile, 80px from the tablet breakpoint. */
-  --layout-hero-padding-top-tablet: var(--space-80);
+  /* Space above the hero logo block: 48px on mobile, 64px from the tablet breakpoint. With layout.hero-logo-margin-top the logo sits 56px (mobile) and 104px (tablet) from the top of the hero. */
+  --layout-hero-padding-top-tablet: var(--space-64);
+  /* Space between the top padding of the hero and the logo: 8px on mobile, 40px from the tablet breakpoint. */
+  --layout-hero-logo-margin-top: var(--space-8);
+  /* Space between the top padding of the hero and the logo: 8px on mobile, 40px from the tablet breakpoint. */
+  --layout-hero-logo-margin-top-tablet: var(--space-40);
   /* Heading size below 768px. Use through the base tokens, not directly. */
   --text-heading-lg-family: var(--font-family-sans);
   --text-heading-lg-size: var(--font-size-24);
@@ -208,6 +212,7 @@
   :root {
     --layout-hero-min-height: var(--layout-hero-min-height-tablet);
     --layout-hero-padding-top: var(--layout-hero-padding-top-tablet);
+    --layout-hero-logo-margin-top: var(--layout-hero-logo-margin-top-tablet);
     --layout-title-measure: var(--layout-title-measure-tablet);
     --text-heading-lg-size: var(--text-heading-lg-tablet-size);
     --text-heading-lg-line: var(--text-heading-lg-tablet-line);
