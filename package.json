@@ -10,7 +10,8 @@
     "metrics": "node scripts/metrics.mjs",
     "tokens:build": "node scripts/build-tokens.mjs",
     "prebuild": "npm run tokens:build",
-    "predev": "npm run tokens:build"
+    "predev": "npm run tokens:build",
+    "docs:check": "node scripts/check-docs.mjs"
   },
   "dependencies": {
     "@playwright/test": "^1.64.1",

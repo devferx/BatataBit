@@ -18,7 +18,7 @@ export interface Row {
 export interface Props {
   /** Table title, rendered as an `<h3>` and used as the accessible name of the table. */
   title: string;
-  /** Accent colour of the title and of the date chip: `primary` (orange) or `secondary` (blue). */
+  /** Colour of the accent bar under the title and of the date chip: `primary` (orange) or `secondary` (blue). The title text is always dark. */
   tone: "primary" | "secondary";
   /** Visually hidden column headers for screen readers (e.g. "Moneda" / "Valor"). */
   columns: { label: string; value: string };
