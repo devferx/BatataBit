@@ -1,0 +1,105 @@
+---
+export interface Props {
+  /** Heading text. */
+  title: string;
+  /**
+   * Optional lead paragraph rendered under the heading.
+   * @default undefined (heading only)
+   */
+  lead?: string;
+  /**
+   * Heading level: `1` renders `<h1>` (one per page, the hero), `2` renders `<h2>` (sections).
+   * Both look identical (text.heading-lg).
+   */
+  level: 1 | 2;
+  /**
+   * Surface the title sits on, which picks the text colours:
+   * `on-light` (dark heading, muted lead), `on-dark` (white heading, muted-on-dark lead),
+   * `on-gradient` (white heading, soft-orange lead; the hero).
+   */
+  tone: "on-light" | "on-dark" | "on-gradient";
+  /**
+   * Space between heading and lead: `sm` = 20px, `md` = 25px, `lg` = 30px.
+   * Legacy parity prop: the original sections used three different gaps; Phase 5 should unify them.
+   * @default "lg"
+   */
+  gap?: "sm" | "md" | "lg";
+  /**
+   * Use the legacy tight 14/16 lead (text.lead-tight) instead of the standard 14/18.
+   * Legacy parity prop for the exchange section; Phase 5 should remove it.
+   * @default false
+   */
+  tightLead?: boolean;
+}
+
+const { title, lead, level, tone, gap = "lg", tightLead = false } = Astro.props;
+const Heading = level === 1 ? "h1" : "h2";
+---
+
+<div class:list={["section-title", `section-title--${tone}`, `section-title--gap-${gap}`]}>
+  <Heading class="section-title__heading">{title}</Heading>
+  {
+    lead && (
+      <p class:list={["section-title__lead", { "section-title__lead--tight": tightLead }]}>
+        {lead}
+      </p>
+    )
+  }
+</div>
+
+<style>
+  .section-title {
+    text-align: center;
+  }
+
+  .section-title__heading {
+    font-size: var(--text-heading-lg-size);
+    font-weight: var(--text-heading-lg-weight);
+    line-height: var(--text-heading-lg-line);
+  }
+
+  .section-title__lead {
+    font-size: var(--text-lead-size);
+    font-weight: var(--text-lead-weight);
+    line-height: var(--text-lead-line);
+  }
+
+  .section-title__lead--tight {
+    font-size: var(--text-lead-tight-size);
+    font-weight: var(--text-lead-tight-weight);
+    line-height: var(--text-lead-tight-line);
+  }
+
+  .section-title--gap-sm .section-title__lead {
+    margin-top: var(--space-20);
+  }
+
+  .section-title--gap-md .section-title__lead {
+    margin-top: 25px;
+  }
+
+  .section-title--gap-lg .section-title__lead {
+    margin-top: 30px;
+  }
+
+  .section-title--on-light .section-title__heading {
+    color: var(--color-text-strong);
+  }
+
+  .section-title--on-light .section-title__lead {
+    color: var(--color-text-muted);
+  }
+
+  .section-title--on-dark .section-title__heading,
+  .section-title--on-gradient .section-title__heading {
+    color: var(--color-text-on-dark);
+  }
+
+  .section-title--on-dark .section-title__lead {
+    color: var(--color-text-muted-on-dark);
+  }
+
+  .section-title--on-gradient .section-title__lead {
+    color: var(--color-primary-soft);
+  }
+</style>

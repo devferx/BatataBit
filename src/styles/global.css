@@ -54,21 +54,6 @@ header img {
   text-align: center;
   align-self: center;
 }
-.header--title-container h1 {
-  font-size: var(--text-heading-lg-size);
-  font-weight: var(--text-heading-lg-weight);
-  line-height: var(--text-heading-lg-line);
-  color: var(--color-text-on-dark);
-}
-
-.header--title-container p {
-  margin-top: 25px;
-  font-size: var(--text-lead-size);
-  font-weight: var(--text-lead-weight);
-  line-height: var(--text-lead-line);
-  color: var(--color-primary-soft);
-}
-
 .hero-cta {
   position: absolute;
   left: calc(50% - 118px);
@@ -94,7 +79,7 @@ main {
   width: 90%;
   min-width: 288px;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0 auto 30px;
 }
 
 .main-exchange-container .backgroundImg {
@@ -106,22 +91,6 @@ main {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.main-exchange-container h2 {
-  margin-bottom: 30px;
-  font-size: var(--text-heading-lg-size);
-  font-weight: var(--text-heading-lg-weight);
-  line-height: var(--text-heading-lg-line);
-  color: var(--color-text-strong);
-}
-
-.main-exchange-container--title p {
-  margin-bottom: 30px;
-  font-size: var(--text-lead-tight-size);
-  font-weight: var(--text-lead-tight-weight);
-  line-height: var(--text-lead-tight-line);
-  color: var(--color-text-muted);
 }
 
 .main-currency-table {
@@ -238,23 +207,8 @@ main {
   height: auto;
   margin: 0 auto;
   margin-top: 50px;
+  margin-bottom: var(--space-20);
   text-align: center;
-}
-
-.product-detail--title h2 {
-  margin-bottom: var(--space-20);
-  font-size: var(--text-heading-lg-size);
-  font-weight: var(--text-heading-lg-weight);
-  line-height: var(--text-heading-lg-line);
-  color: var(--color-text-on-dark);
-}
-
-.product-detail--title p {
-  margin-bottom: var(--space-20);
-  font-size: var(--text-lead-size);
-  font-weight: var(--text-lead-weight);
-  line-height: var(--text-lead-line);
-  color: var(--color-text-muted-on-dark);
 }
 
 .product-detail--card {
@@ -300,15 +254,7 @@ main {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-}
-
-.bitcoin-img-container h2 {
   padding-top: 60px;
-  font-size: var(--text-heading-lg-size);
-  font-weight: var(--text-heading-lg-weight);
-  line-height: var(--text-heading-lg-line);
-  text-align: center;
-  color: var(--color-text-on-dark);
 }
 
 .main-plans-container {
@@ -324,22 +270,7 @@ main {
   height: auto;
   margin: 0 auto;
   margin-bottom: 50px;
-}
-
-.plans--title h2 {
   padding-top: 50px;
-  font-size: var(--text-heading-lg-size);
-  font-weight: var(--text-heading-lg-weight);
-  line-height: var(--text-heading-lg-line);
-  color: var(--color-text-strong);
-}
-
-.plans--title p {
-  padding-top: 30px;
-  font-size: var(--text-lead-size);
-  font-weight: var(--text-lead-weight);
-  line-height: var(--text-lead-line);
-  color: var(--color-text-muted);
 }
 
 .plans-container--slider {
