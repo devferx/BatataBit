@@ -85,8 +85,14 @@ const titleId = `currency-table-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-"
     margin-bottom: var(--space-32);
   }
 
+  /* Mismo ancho que la tabla para alinear el título con la primera celda. */
   .currency-table__title {
-    margin-bottom: var(--space-4);
+    width: 90%;
+    min-width: 230px;
+    max-width: 300px;
+    margin: 0 auto var(--space-4);
+    padding-inline: var(--space-12);
+    text-align: start;
     font-family: var(--text-title-md-family);
     font-size: var(--text-title-md-size);
     font-weight: var(--text-title-md-weight);

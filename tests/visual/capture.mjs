@@ -1,9 +1,10 @@
 // Captura screenshots full-page a 375px y 1024px.
-// Uso: node tests/visual/capture.mjs <url> <carpeta-salida>
+// Uso: node tests/visual/capture.mjs <url> <carpeta-salida> [anchos separados por coma; por defecto 375,1024]
 import { chromium } from "@playwright/test";
 import { mkdirSync } from "node:fs";
 
-const [url, outDir] = process.argv.slice(2);
+const [url, outDir, widthsArg] = process.argv.slice(2);
+const widths = (widthsArg ?? "375,1024").split(",").map(Number);
 if (!url || !outDir) {
   console.error("Uso: node tests/visual/capture.mjs <url> <carpeta-salida>");
   process.exit(1);
@@ -11,7 +12,7 @@ if (!url || !outDir) {
 mkdirSync(outDir, { recursive: true });
 
 const browser = await chromium.launch();
-for (const width of [375, 1024]) {
+for (const width of widths) {
   const context = await browser.newContext({
     viewport: { width, height: 800 },
     deviceScaleFactor: 1,

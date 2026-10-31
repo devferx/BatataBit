@@ -87,7 +87,8 @@ const classes = ["button", `button--${variant}`];
 
   .button--outline {
     display: inline-flex;
-    width: 150px;
+    min-width: 150px;
+    white-space: nowrap;
     border: var(--border-button) solid var(--color-border-accent);
     cursor: pointer;
   }

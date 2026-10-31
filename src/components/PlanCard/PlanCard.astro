@@ -100,7 +100,9 @@ const { title, price, note, badge, ctaLabel, ctaAriaLabel } = Astro.props;
     vertical-align: text-top;
   }
 
+  /* Reserva dos líneas para que los botones de las tarjetas queden alineados. */
   .plan-card__note {
+    min-height: calc(var(--text-note-line) * 2);
     font-family: var(--text-note-family);
     font-size: var(--text-note-size);
     font-weight: var(--text-note-weight);
