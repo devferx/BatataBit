@@ -161,11 +161,6 @@
   --text-data-size: var(--font-size-16);
   --text-data-weight: var(--font-weight-regular);
   --text-data-line: var(--font-line-height-19);
-  /* Smaller table value. Currently only referenced by a dead CSS rule (.table__right); kept for parity until removed. */
-  --text-data-sm-family: var(--font-family-data);
-  --text-data-sm-size: var(--font-size-14);
-  --text-data-sm-weight: var(--font-weight-regular);
-  --text-data-sm-line: var(--font-line-height-17);
   /* Small supporting text: date chips, badges, price currency symbol, savings note. Light 300 / 12/15. Some uses take only the size. */
   --text-caption-family: var(--font-family-sans);
   --text-caption-size: var(--font-size-12);

@@ -54,6 +54,7 @@ header img {
   text-align: center;
   align-self: center;
 }
+
 .hero-cta {
   position: absolute;
   left: calc(50% - 118px);
@@ -93,96 +94,6 @@ main {
   background-repeat: no-repeat;
 }
 
-.main-currency-table {
-  width: 70%;
-  min-width: 235px;
-  max-width: 500px;
-  height: auto;
-  margin: 0 auto;
-  margin-bottom: 30px;
-  font-family: var(--font-data);
-}
-
-.main-currency-table .currency-table--title {
-  margin-bottom: 15px;
-  font-size: var(--text-title-md-size);
-  font-weight: var(--text-title-md-weight);
-  line-height: var(--text-title-md-line);
-}
-
-.__orange {
-  color: var(--color-primary) !important;
-}
-
-.__blue {
-  color: var(--color-secondary) !important;
-}
-
-.currency-table--container--grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  width: 90%;
-  min-width: 230px;
-  max-width: 300px;
-  height: 250px;
-  margin: 0 auto;
-  border-radius: var(--radius-card);
-}
-
-.currency-table--container--grid div {
-  display: flex;
-  align-items: center;
-  width: auto;
-  padding: var(--space-12) 10px;
-  font-size: var(--text-data-size);
-  font-weight: var(--text-data-weight);
-  line-height: var(--text-data-line);
-  color: var(--color-text-subtle);
-  background-color: var(--color-surface-card);
-}
-
-.currency-table--container--grid div:nth-child(even) {
-  justify-content: center;
-  color: var(--color-text-muted);
-}
-
-.currency-table--container--grid .grid__top-left {
-  border-radius: var(--radius-card) 0 0 0;
-}
-
-.currency-table--container--grid .grid__top-right {
-  border-radius: 0 var(--radius-card) 0 0;
-}
-
-.currency-table--container--grid .grid__bottom-left {
-  border-radius: 0 0 0 var(--radius-card);
-}
-
-.currency-table--container
-  .currency-table--container--grid
-  .grid__bottom-right {
-  border-radius: 0 0 var(--radius-card) 0;
-}
-
-.currency-table--container--grid .table__right {
-  font-size: var(--text-data-sm-size);
-  font-weight: var(--text-data-sm-weight);
-  line-height: var(--text-data-sm-line);
-  color: var(--color-text-muted);
-}
-
-.currency-table--container--grid .icon {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  margin-left: 10px;
-}
-
-.currency-table--date {
-  margin-top: var(--space-16);
-}
-
 .main-product-detail {
   position: relative;
   width: 100%;
@@ -198,7 +109,9 @@ main {
   height: 25px;
   top: -10px;
   left: calc(50% - 20px);
-  background-image: url("/assets/icons/batata.svg");
+  /* La ilustración mide 41px de ancho; se recorta a 40px como el fondo original. */
+  object-fit: none;
+  object-position: 0 0;
 }
 
 .product-detail--title {

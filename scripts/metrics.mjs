@@ -3,8 +3,10 @@
 // Además cuenta referencias a tokens `var(--...)` y valores crudos que quedan fuera de tokens.css.
 // Criterio oficial de pares: se excluye la regla raíz `html { font-size: 62.5% }` (baseline = 11).
 // Si existe tokens.css se usa para resolver var() antes de comparar pares font-size/line-height.
-// Uso: node scripts/metrics.mjs [--out metrics/baseline.json] [--tokens src/styles/tokens.css] [archivo.css ...]
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+// Acepta .css y .astro (de los .astro se miden solo los bloques <style>).
+// Uso: node scripts/metrics.mjs [--out metrics/baseline.json] [--tokens src/styles/tokens.css]
+//        [--components src/components] [--page src/pages/index.astro] [archivo.css|archivo.astro ...]
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
 import { dirname } from "node:path";
 
 const args = process.argv.slice(2);
@@ -12,7 +14,26 @@ const outIdx = args.indexOf("--out");
 const out = outIdx >= 0 ? args.splice(outIdx, 2)[1] : null;
 const tokIdx = args.indexOf("--tokens");
 const tokensFile = tokIdx >= 0 ? args.splice(tokIdx, 2)[1] : "src/styles/tokens.css";
-const files = args.length ? args : ["styles.css", "css/tablet.css"];
+const compIdx = args.indexOf("--components");
+const componentsDir = compIdx >= 0 ? args.splice(compIdx, 2)[1] : null;
+const pageIdx = args.indexOf("--page");
+const pageFile = pageIdx >= 0 ? args.splice(pageIdx, 2)[1] : null;
+const componentFiles = componentsDir
+  ? readdirSync(componentsDir, { withFileTypes: true })
+      .filter((d) => d.isDirectory())
+      .map((d) => `${componentsDir}/${d.name}/${d.name}.astro`)
+      .filter(existsSync)
+  : [];
+const files = [...(args.length ? args : ["styles.css", "css/tablet.css"]), ...componentFiles];
+
+// De un .astro solo cuentan los bloques <style>; de un .css, todo el archivo.
+const cssOf = (file) => {
+  const raw = readFileSync(file, "utf8");
+  if (!file.endsWith(".astro")) return raw;
+  return [...raw.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map((m) => m[1]).join("\n");
+};
+const lineCount = (text) => (text.trim() ? text.replace(/\n$/, "").split("\n").length : 0);
+const cssLinesPerFile = {};
 
 // Custom properties definidas en tokens.css, para resolver var(--x) -> valor.
 const tokenDefs = new Map();
@@ -48,8 +69,10 @@ const colorLiterals = [];
 const pairs = new Map();
 
 for (const file of files) {
-  const raw = readFileSync(file, "utf8");
-  totalLines += raw.replace(/\n$/, "").split("\n").length;
+  const raw = cssOf(file);
+  const n = lineCount(raw);
+  cssLinesPerFile[file] = n;
+  totalLines += n;
   const css = stripComments(raw);
 
   for (const m of stripRoot(css).matchAll(colorRe)) {
@@ -95,6 +118,9 @@ const result = {
   files,
   cssLines: totalLines,
   tokensCssLines: tokensCss ? tokensCss.replace(/\n$/, "").split("\n").length : 0,
+  cssLinesPerFile: { ...cssLinesPerFile, ...(tokensCss ? { [tokensFile]: lineCount(tokensCss) } : {}) },
+  components: componentFiles.length,
+  ...(pageFile ? { pageLines: { [pageFile]: lineCount(readFileSync(pageFile, "utf8")) } } : {}),
   tokenReferences: tokenRefs,
   rawValuesOutsideTokens: {
     total: Object.values(rawValues).reduce((a, b) => a + b, 0),

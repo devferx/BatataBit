@@ -8,3 +8,7 @@ import type { Props as PlanCardProps } from "../components/PlanCard/PlanCard.ast
 import plansJson from "./plans.json";
 
 export const plans = plansJson as PlanCardProps[];
+import type { Props as CurrencyTableProps } from "../components/CurrencyTable/CurrencyTable.astro";
+import currenciesJson from "./currencies.json";
+
+export const currencies = currenciesJson as CurrencyTableProps[];

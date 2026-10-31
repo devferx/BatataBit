@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Monedas",
+    "tone": "primary",
+    "columns": { "label": "Moneda", "value": "Valor" },
+    "updatedAt": "19 Julio 23:45",
+    "rows": [
+      { "label": "Bitcoin", "value": "$ 1.96", "trend": "down" },
+      { "label": "Ethereum", "value": "$ 0.07", "trend": "up" },
+      { "label": "Ripple", "value": "$ 2.15", "trend": "down" },
+      { "label": "Stellar", "value": "$ 4.96", "trend": "down" }
+    ]
+  },
+  {
+    "title": "Comisiones",
+    "tone": "secondary",
+    "columns": { "label": "Casa de cambio", "value": "Comisión" },
+    "updatedAt": "19 Julio 23:45",
+    "rows": [
+      { "label": "Bitrade", "value": "$ 12.96" },
+      { "label": "Bitpreco", "value": "$ 13.07" },
+      { "label": "Novadax", "value": "$ 13.15" },
+      { "label": "Coinext", "value": "$ 14.96" }
+    ]
+  }
+]

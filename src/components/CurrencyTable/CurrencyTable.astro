@@ -1,0 +1,178 @@
+---
+import Badge from "../Badge/Badge.astro";
+import Icon from "../Icon/Icon.astro";
+
+export interface Row {
+  /** First-column text: the name of the currency or exchange. */
+  label: string;
+  /** Second-column text, already formatted (e.g. "$ 1.96"). */
+  value: string;
+  /**
+   * Direction of the latest change, shown as an icon after the value with a text alternative
+   * ("Al alza" / "A la baja").
+   * @default undefined (no icon)
+   */
+  trend?: "up" | "down";
+}
+
+export interface Props {
+  /** Table title, rendered as an `<h3>` and used as the accessible name of the table. */
+  title: string;
+  /** Accent colour of the title and of the date chip: `primary` (orange) or `secondary` (blue). */
+  tone: "primary" | "secondary";
+  /** Visually hidden column headers for screen readers (e.g. "Moneda" / "Valor"). */
+  columns: { label: string; value: string };
+  /** Table rows; the first column is the row header, the second the data cell. */
+  rows: Row[];
+  /** Last-update text shown in the chip after "Actualizado:" (e.g. "19 Julio 23:45"). */
+  updatedAt: string;
+}
+
+const { title, tone, columns, rows, updatedAt } = Astro.props;
+const titleId = `currency-table-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+const trendLabel = { up: "Al alza", down: "A la baja" } as const;
+---
+
+<div class="currency-table">
+  <h3 class:list={["currency-table__title", `currency-table__title--${tone}`]} id={titleId}>
+    {title}
+  </h3>
+  {/* Explicit roles keep the table semantics if a browser drops them for display:grid/contents. */}
+  <table class="currency-table__grid" role="table" aria-labelledby={titleId}>
+    <thead role="rowgroup">
+      <tr role="row">
+        <th class="currency-table__sr-only" role="columnheader" scope="col">{columns.label}</th>
+        <th class="currency-table__sr-only" role="columnheader" scope="col">{columns.value}</th>
+      </tr>
+    </thead>
+    <tbody role="rowgroup">
+      {
+        rows.map((row) => (
+          <tr role="row">
+            <th role="rowheader" scope="row">
+              {row.label}
+            </th>
+            <td role="cell">
+              {row.value}
+              {row.trend && (
+                <span class="currency-table__trend">
+                  <Icon name={`trending-${row.trend}`} size="sm" label={trendLabel[row.trend]} />
+                </span>
+              )}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+  <div class="currency-table__updated">
+    <Badge tone={tone === "primary" ? "primary-soft" : "secondary-soft"}>
+      <strong>Actualizado</strong>: {updatedAt}
+    </Badge>
+  </div>
+</div>
+
+<style>
+  .currency-table {
+    width: 70%;
+    min-width: 235px;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    font-family: var(--font-data);
+  }
+
+  .currency-table__title {
+    margin-bottom: 15px;
+    font-size: var(--text-title-md-size);
+    font-weight: var(--text-title-md-weight);
+    line-height: var(--text-title-md-line);
+  }
+
+  .currency-table__title--primary {
+    color: var(--color-primary);
+  }
+
+  .currency-table__title--secondary {
+    color: var(--color-secondary);
+  }
+
+  /* A table laid out as a 2-column grid; rows dissolve so cells are the grid items. */
+  .currency-table__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    width: 90%;
+    min-width: 230px;
+    max-width: 300px;
+    height: 250px;
+    margin: 0 auto;
+    border-radius: var(--radius-card);
+  }
+
+  .currency-table__grid thead,
+  .currency-table__grid tbody,
+  .currency-table__grid tr {
+    display: contents;
+  }
+
+  .currency-table__grid th,
+  .currency-table__grid td {
+    display: flex;
+    align-items: center;
+    width: auto;
+    padding: var(--space-12) 10px;
+    font-size: var(--text-data-size);
+    font-weight: var(--text-data-weight);
+    line-height: var(--text-data-line);
+    background-color: var(--color-surface-card);
+  }
+
+  .currency-table__grid th {
+    text-align: start;
+    color: var(--color-text-subtle);
+  }
+
+  .currency-table__grid td {
+    justify-content: center;
+    color: var(--color-text-muted);
+  }
+
+  .currency-table__grid tbody tr:first-child th {
+    border-radius: var(--radius-card) 0 0 0;
+  }
+
+  .currency-table__grid tbody tr:first-child td {
+    border-radius: 0 var(--radius-card) 0 0;
+  }
+
+  .currency-table__grid tbody tr:last-child th {
+    border-radius: 0 0 0 var(--radius-card);
+  }
+
+  .currency-table__grid tbody tr:last-child td {
+    border-radius: 0 0 var(--radius-card) 0;
+  }
+
+  .currency-table__grid .currency-table__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .currency-table__trend {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+  }
+
+  .currency-table__updated {
+    margin-top: var(--space-16);
+  }
+</style>

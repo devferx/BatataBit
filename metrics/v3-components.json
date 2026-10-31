@@ -1,0 +1,102 @@
+{
+  "measuredAt": "2026-10-31T02:37:39.812Z",
+  "files": [
+    "src/styles/global.css",
+    "src/components/Badge/Badge.astro",
+    "src/components/Button/Button.astro",
+    "src/components/CurrencyTable/CurrencyTable.astro",
+    "src/components/FeatureCard/FeatureCard.astro",
+    "src/components/Icon/Icon.astro",
+    "src/components/PlanCard/PlanCard.astro",
+    "src/components/SectionTitle/SectionTitle.astro"
+  ],
+  "cssLines": 555,
+  "tokensCssLines": 174,
+  "cssLinesPerFile": {
+    "src/styles/global.css": 209,
+    "src/components/Badge/Badge.astro": 42,
+    "src/components/Button/Button.astro": 44,
+    "src/components/CurrencyTable/CurrencyTable.astro": 103,
+    "src/components/FeatureCard/FeatureCard.astro": 35,
+    "src/components/Icon/Icon.astro": 13,
+    "src/components/PlanCard/PlanCard.astro": 54,
+    "src/components/SectionTitle/SectionTitle.astro": 55,
+    "src/styles/tokens.css": 174
+  },
+  "components": 7,
+  "pageLines": {
+    "src/pages/index.astro": 89
+  },
+  "tokenReferences": 103,
+  "rawValuesOutsideTokens": {
+    "total": 38,
+    "colors": 0,
+    "typography": 1,
+    "radius": 0,
+    "shadow": 0,
+    "spacing": 37,
+    "distinctRawSpacing": [
+      "-15px",
+      "-10px",
+      "0px",
+      "2px",
+      "5px",
+      "6px",
+      "10px",
+      "15px",
+      "20px",
+      "25px",
+      "30px",
+      "35px",
+      "50px",
+      "60px",
+      "70px",
+      "118px",
+      "270px"
+    ]
+  },
+  "hardcodedColorLiterals": {
+    "count": 0,
+    "distinct": []
+  },
+  "fontSizeLineHeightPairs": {
+    "count": 10,
+    "pairs": {
+      "1.4rem/1.8rem": [
+        "footer .left ul",
+        ".feature-card__body",
+        ".plan-card__title",
+        ".section-title__lead"
+      ],
+      "1.2rem/unset": [
+        ".badge--sm",
+        ".plan-card__price span",
+        ".plan-card__note"
+      ],
+      "1.2rem/1.5rem": [
+        ".badge--md"
+      ],
+      "1.4rem/unset": [
+        ".button"
+      ],
+      "1.8rem/2.3rem": [
+        ".currency-table__title"
+      ],
+      "1.6rem/1.9rem": [
+        ".currency-table__grid th,\n  .currency-table__grid td"
+      ],
+      "1.8rem/1.8rem": [
+        ".feature-card__title"
+      ],
+      "5.2rem/5.3rem": [
+        ".plan-card__price"
+      ],
+      "2.4rem/2.6rem": [
+        ".section-title__heading"
+      ],
+      "1.4rem/1.6rem": [
+        ".section-title__lead--tight"
+      ]
+    }
+  }
+}

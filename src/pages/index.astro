@@ -4,7 +4,8 @@ import Icon from "../components/Icon/Icon.astro";
 import SectionTitle from "../components/SectionTitle/SectionTitle.astro";
 import FeatureCard from "../components/FeatureCard/FeatureCard.astro";
 import PlanCard from "../components/PlanCard/PlanCard.astro";
-import { features, plans } from "../data";
+import CurrencyTable from "../components/CurrencyTable/CurrencyTable.astro";
+import { currencies, features, plans } from "../data";
 import Button from "../components/Button/Button.astro";
 import Badge from "../components/Badge/Badge.astro";
 ---
@@ -38,56 +39,11 @@ import Badge from "../components/Badge/Badge.astro";
           />
         </div>
         <section class="main-tables-container">
-          <div class="main-currency-table">
-            <p class="currency-table--title __orange">Monedas</p>
-            <div class="currency-table--container">
-              <div class="currency-table--container--grid">
-                <div class="grid__top-left">Bitcoin</div>
-                <div class="grid__top-right">
-                  $ 1.96 <span class="icon"><Icon name="trending-down" size="sm" label="A la baja" /></span>
-                </div>
-
-                <div>Ethereum</div>
-                <div>$ 0.07<span class="icon"><Icon name="trending-up" size="sm" label="Al alza" /></span></div>
-
-                <div>Ripple</div>
-                <div>$ 2.15 <span class="icon"><Icon name="trending-down" size="sm" label="A la baja" /></span></div>
-
-                <div class="grid__bottom-left">Stellar</div>
-                <div class="grid__bottom-right">
-                  $ 4.96 <span class="icon"><Icon name="trending-down" size="sm" label="A la baja" /></span>
-                </div>
-              </div>
-            </div>
-            <div class="currency-table--date">
-              <Badge tone="primary-soft"><strong>Actualizado</strong>: 19 Julio 23:45</Badge>
-            </div>
-          </div>
-          <div class="main-currency-table">
-            <p class="currency-table--title __blue">Comisiones</p>
-            <div class="currency-table--container">
-              <div class="currency-table--container--grid">
-                <div class="grid__top-left">Bitrade</div>
-                <div class="grid__top-right">$ 12.96</div>
-
-                <div>Bitpreco</div>
-                <div>$ 13.07</div>
-
-                <div class="grid__bottom-left">Novadax</div>
-                <div class="grid__bottom-right">$ 13.15</div>
-
-                <div>Coinext</div>
-                <div>$ 14.96</div>
-              </div>
-            </div>
-            <div class="currency-table--date">
-              <Badge tone="secondary-soft"><strong>Actualizado</strong>: 19 Julio 23:45</Badge>
-            </div>
-          </div>
+          {currencies.map((table) => <CurrencyTable {...table} />)}
         </section>
       </section>
       <section class="main-product-detail">
-        <span class="product-detail--batata-log"></span>
+        <img class="product-detail--batata-log" src="/assets/icons/batata.svg" alt="" width="40" height="25" />
         <div class="product-detail--title">
           <SectionTitle
             level={2}
