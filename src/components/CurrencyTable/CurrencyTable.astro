@@ -125,7 +125,6 @@ const titleId = `currency-table-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-"
     width: 90%;
     min-width: 230px;
     max-width: 300px;
-    height: 250px;
     margin: 0 auto;
     border-radius: var(--radius-card);
   }
@@ -141,7 +140,9 @@ const titleId = `currency-table-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-"
     display: flex;
     align-items: center;
     width: auto;
-    padding: var(--space-12);
+    /* Fila de 39px (Figma): línea de texto + 20px; el texto queda centrado en la celda. */
+    height: calc(var(--text-data-label-line) + var(--space-20));
+    padding: 0 var(--space-12);
     background-color: var(--color-surface-card);
   }
 

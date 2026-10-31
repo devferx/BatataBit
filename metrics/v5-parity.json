@@ -1,5 +1,5 @@
 {
-  "measuredAt": "2026-10-31T14:36:02.444Z",
+  "measuredAt": "2026-10-31T14:42:20.622Z",
   "files": [
     "src/styles/global.css",
     "src/components/Badge/Badge.astro",
@@ -10,24 +10,24 @@
     "src/components/PlanCard/PlanCard.astro",
     "src/components/SectionTitle/SectionTitle.astro"
   ],
-  "cssLines": 638,
-  "tokensCssLines": 222,
+  "cssLines": 657,
+  "tokensCssLines": 228,
   "cssLinesPerFile": {
-    "src/styles/global.css": 222,
+    "src/styles/global.css": 229,
     "src/components/Badge/Badge.astro": 47,
     "src/components/Button/Button.astro": 46,
-    "src/components/CurrencyTable/CurrencyTable.astro": 157,
-    "src/components/FeatureCard/FeatureCard.astro": 35,
+    "src/components/CurrencyTable/CurrencyTable.astro": 158,
+    "src/components/FeatureCard/FeatureCard.astro": 46,
     "src/components/Icon/Icon.astro": 13,
     "src/components/PlanCard/PlanCard.astro": 75,
     "src/components/SectionTitle/SectionTitle.astro": 43,
-    "src/styles/tokens.css": 222
+    "src/styles/tokens.css": 228
   },
   "components": 7,
   "pageLines": {
     "src/pages/index.astro": 83
   },
-  "tokenReferences": 165,
+  "tokenReferences": 172,
   "rawValuesOutsideTokens": {
     "total": 1,
     "colors": 0,

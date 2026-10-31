@@ -60,6 +60,10 @@
   --layout-title-measure: 100%;
   --layout-title-measure-tablet: 466px;
   --layout-content-max-width: 930px;
+  --layout-hero-logo-width: 150px;
+  --layout-hero-logo-width-tablet: 174px;
+  --layout-footer-min-height: 150px;
+  --layout-footer-min-height-tablet: 271px;
 
   /* Semánticos */
   /* Brand orange for solid fills and non-text accents: footer background, solid badge background, accent bars, icons. Never for text (2.17:1 on off-white). Text placed on it uses color.on-primary. */
@@ -214,6 +218,8 @@
     --layout-hero-padding-top: var(--layout-hero-padding-top-tablet);
     --layout-hero-logo-margin-top: var(--layout-hero-logo-margin-top-tablet);
     --layout-title-measure: var(--layout-title-measure-tablet);
+    --layout-hero-logo-width: var(--layout-hero-logo-width-tablet);
+    --layout-footer-min-height: var(--layout-footer-min-height-tablet);
     --text-heading-lg-size: var(--text-heading-lg-tablet-size);
     --text-heading-lg-line: var(--text-heading-lg-tablet-line);
     --text-lead-size: var(--text-lead-tablet-size);

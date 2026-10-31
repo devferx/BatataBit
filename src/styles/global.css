@@ -39,8 +39,8 @@ header {
 }
 
 header img {
-  width: 150px;
-  height: 24px;
+  width: var(--layout-hero-logo-width);
+  height: auto;
   margin-top: var(--layout-hero-logo-margin-top);
   align-self: center;
 }
@@ -155,7 +155,7 @@ main {
 footer {
   display: flex;
   width: 100%;
-  height: 150px;
+  min-height: var(--layout-footer-min-height);
   background-color: var(--color-primary);
 }
 
@@ -194,12 +194,19 @@ footer .left ul {
     max-width: var(--layout-content-max-width);
     margin: 0 auto;
   }
+  /* El margen lateral lo da el contenedor de tarjetas, no la sección. */
+  .main-product-detail {
+    padding-inline: 0;
+  }
+  /* Tarjetas dentro del margen de página de 64px, dos por fila con 16px entre ellas (Figma: 345px). */
   .product-cards--container {
     display: flex;
     flex-wrap: wrap;
+    gap: var(--space-16);
     width: 100%;
     max-width: var(--layout-content-max-width);
     margin: 0 auto;
+    padding-inline: var(--space-64);
   }
   /* Tres tarjetas iguales dentro del margen de página de 64px (Figma: 223px con 18px entre ellas). */
   .plans-container--slider {
